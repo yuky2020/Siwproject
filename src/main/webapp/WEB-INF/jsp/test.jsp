@@ -1,1 +1,0 @@
-<html><body>${fotografo}</body></html>

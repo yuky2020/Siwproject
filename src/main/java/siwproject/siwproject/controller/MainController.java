@@ -2,9 +2,7 @@ package siwproject.siwproject.controller;
 
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,52 +16,46 @@ import siwproject.siwproject.pg.FotografoServices;
 @Controller
 public class MainController {
     @Autowired
-  FotografoServices fotografoServices;
-    
- 
+    FotografoServices fotografoServices;
+
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
- 
-        String message = "Hello Spring Boot + JSP";
- 
-        model.addAttribute("message", message);
- 
-        return "NewFile";
+
+        // String message = "Hello Spring Boot + JSP";
+
+        // model.addAttribute("message", message);
+
+        return "home";
     }
- 
+
     @RequestMapping(value = { "/newFotografo" }, method = RequestMethod.GET)
     public String viewFoto(Model model) {
- 
-    	return "newFotografo";
-	}
 
-	@RequestMapping(value= {"/error"},method =RequestMethod.GET)
-	public String error(Model model){ return "404";}
+        return "newFotografo";
+    }
 
-	@RequestMapping(value = { "/mostraFotografi" }, method = RequestMethod.GET)
-    public String viewFotografi(Model model,HttpServletRequest req) {
+    @RequestMapping(value = { "/error" }, method = RequestMethod.GET)
+    public String error(Model model) {
+        return "404";
+    }
+
+    @RequestMapping(value = { "/mostraFotografi" }, method = RequestMethod.GET)
+    public String viewFotografi(Model model, HttpServletRequest req) {
         List<Fotografo> fotografi = fotografoServices.getAllFotografos();
         req.setAttribute("fotografi", fotografi);
-        
-    	return "mostraFotografi";
-	}	 
-	
+
+        return "mostraFotografi";
+    }
 
     @RequestMapping(value = { "/paginaFotografo" }, method = RequestMethod.GET)
     public String pageFotografi(Model model) {
- 
-        return "paginaFotografo";}
-        
 
+        return "paginaFotografo";
+    }
 
-    @RequestMapping(value = {"/paginaPrincipale"},method = RequestMethod.GET)
-    public String pagep(Model model){
+    @RequestMapping(value = { "/paginaPrincipale" }, method = RequestMethod.GET)
+    public String pagep(Model model) {
         return "ciao";
     }
-  
-    
-    
+
 }
-
-
-
