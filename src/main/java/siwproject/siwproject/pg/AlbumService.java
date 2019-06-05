@@ -4,23 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Album;
 
-public class AlbumService   {
+@Service
+public class AlbumService {
     @Autowired
-    private AlbumRepository rep;
-    
-    public List<Album> getAlbum() {
-        List<Album> list = new ArrayList<>();
-        rep.findAll().forEach(a -> list.add(a));
-        return list;
+    private AlbumRepository albumRepository;
+
+    @Transactional
+    public Album albumPerId(long id) {
+        return albumRepository.findById(id);
     }
 
-    
-    public Album getAlbumById(long id) {
-        Album a = rep.findById(id);
-        return a;
+    @Transactional
+    public List<Album> tutti() {
+        return albumRepository.findAll();
     }
-    
+
+    @Transactional
+    public void inserisci(Album a) {
+        this.albumRepository.save(a);
+    }
+
+    @Transactional
+    public Album albumPerNome(String nome) {
+        return this.albumRepository.findByNome(nome);
+    }
+
 }

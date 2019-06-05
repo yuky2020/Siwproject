@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @NamedQuery(name = "findAllAlbum", query = "Select a From Album a")
 public class Album {
@@ -15,17 +13,20 @@ public class Album {
 	private long id;
 	private String nome;
 	@OneToMany
-	private Map<String,Foto> foto;
+	private Map<String, Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;
-	
-	public Album(String nome) {
-		this.nome = nome;
-		this.foto = new HashMap<String,Foto>();
+
+	public Album() {
 	}
 
-	/*METODI GETTER E SETTER*/
-	
+	public Album(String nome) {
+		this.nome = nome;
+		this.foto = new HashMap<String, Foto>();
+	}
+
+	/* METODI GETTER E SETTER */
+
 	public long getId() {
 		return id;
 	}
@@ -58,7 +59,4 @@ public class Album {
 		this.fotografo = fotografo;
 	}
 
-	
-	
-	
 }

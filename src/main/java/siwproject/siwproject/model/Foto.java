@@ -11,16 +11,15 @@ public class Foto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String titolo;
+	private String url;
 	@ManyToOne
 	private Fotografo fotografo;
 	@ManyToOne
 	private Album album;
-	
-	public Foto(String titolo) {
-		this.titolo = titolo;
+
+	public Foto() {
 	}
-	//Metodi getter e setter
+	// Metodi getter e setter
 
 	public long getId() {
 		return id;
@@ -28,14 +27,6 @@ public class Foto {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getTitolo() {
-		return titolo;
-	}
-
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
 	}
 
 	public Fotografo getFotografo() {
@@ -53,6 +44,13 @@ public class Foto {
 	public void setAlbum(Album album) {
 		this.album = album;
 	}
-	
-	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 }
