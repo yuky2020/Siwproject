@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siwproject.siwproject.model.Foto;
-import siwproject.siwproject.model.Fotografo;
+
 
 @Service
 public class FotoService {

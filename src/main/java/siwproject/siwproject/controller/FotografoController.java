@@ -3,7 +3,6 @@ package siwproject.siwproject.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.RollbackException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

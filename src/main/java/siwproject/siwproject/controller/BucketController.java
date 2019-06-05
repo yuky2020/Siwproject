@@ -1,6 +1,5 @@
 package siwproject.siwproject.controller;
 
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
 
-import com.amazonaws.services.s3.model.PutObjectRequest;
+
 
 @RestController
 @RequestMapping

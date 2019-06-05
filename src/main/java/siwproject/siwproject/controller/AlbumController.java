@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import siwproject.siwproject.model.*;
-import siwproject.siwproject.pg.Database;
+
 
 @WebServlet("/albumController")
 public class AlbumController extends HttpServlet{

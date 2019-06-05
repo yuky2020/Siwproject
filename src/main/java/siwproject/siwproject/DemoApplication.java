@@ -8,9 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 
-import siwproject.siwproject.model.Fotografo;
-import siwproject.siwproject.pg.Database;
-import siwproject.siwproject.pg.FotografoRepository;
+
 
 @ServletComponentScan
 @SpringBootApplication
