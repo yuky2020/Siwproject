@@ -1,0 +1,5 @@
+amazonProperties:
+  endpointUrl: https://s3.us-east-2.amazonaws.com
+  accessKey: AKIAYKED3A7PL4W55DFI
+  secretKey: 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
+  bucketName: silph
