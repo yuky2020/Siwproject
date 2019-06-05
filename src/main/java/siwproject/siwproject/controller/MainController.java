@@ -58,4 +58,9 @@ public class MainController {
         return "ciao";
     }
 
+    @RequestMapping(value = { "/gallery" }, method = RequestMethod.GET)
+    public String pagegallery(Model model) {
+
+        return "galleria";
+    }
 }

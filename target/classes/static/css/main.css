@@ -1,0 +1,25 @@
+body {
+
+  }
+  .starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  
+  h1{
+      color:#0000FF;
+  }
+  
+  h2{
+      color:#FF0000;
+  }
+
+.item{
+      color:lightgreen !important;
+  }
+
+.navback{
+    background-color: white;
+    border: lightgreen solid 2px;
+    border-radius: 18px;
+}
