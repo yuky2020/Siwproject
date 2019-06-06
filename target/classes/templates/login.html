@@ -49,15 +49,15 @@
                     <div class="row">
                         <div class="col-md-6 login-come amministratore ">
                             <h3>Login come amministratore</h3>
-                            <form>
+                            <form action="loginValdiator" method="GET">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Username *" value="" />
+                                    <input type="text" class="form-control" placeholder="Username *" value="" name="username"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                                    <input type="password" class="form-control" placeholder="Your Password *" value="",name="username" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btnSubmit" value="Login" />
+                                    <input type="submit" class="btnSubmit" value="submit" />
                                 </div>
                                 <div class="form-group">
                                     <a href="SetPassword" class="ForgetPwd">Forget Password?</a>
