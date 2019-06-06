@@ -63,4 +63,19 @@ public class MainController {
 
         return "galleria";
     }
+
+    @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+    public String pagelogin(Model model) {
+
+        return "login";
+
+    }
+ 
+    @RequestMapping(value = { "/fotografoForm" }, method = RequestMethod.GET)
+    public String pageFotografoForm(Model model) {
+
+        return "fotografoform";
+
+    }
+
 }
