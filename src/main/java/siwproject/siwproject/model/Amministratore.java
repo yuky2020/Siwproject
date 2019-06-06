@@ -28,7 +28,7 @@ public class Amministratore {
 
     }
 
-    private boolean checkPwd(String actual){
+    public boolean checkPwd(String actual){
         return username.equals(actual);
     }
 
