@@ -16,7 +16,6 @@ import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.FotografoServices;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
