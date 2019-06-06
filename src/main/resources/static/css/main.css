@@ -7,11 +7,11 @@ body {
   }
   
   h1{
-      color:#0000FF;
+    
   }
   
   h2{
-      color:#FF0000;
+      
   }
 
 
@@ -21,3 +21,4 @@ body {
     border: black solid 2px;
     border-radius: 10px;
 }
+.navbackin{ }
