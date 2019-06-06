@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.FotografoServices;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class MainController {
@@ -77,5 +79,10 @@ public class MainController {
         return "fotografoform";
 
     }
+    @RequestMapping(value="/SetPassword", method=RequestMethod.GET)
+    public String SetPassword(Model model) {
+        return "setPassword";
+    }
+    
 
 }
