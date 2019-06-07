@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Inserisci Fotografo</title>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/loginfotografo.css">
+
+
+    </head>
+
+
+    <body>
+            <div class="container">
+                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div class="card">
+                                                <div class="card-header">Register</div>
+                                                <div class="card-body">
+                    
+                                                    <form class="form-horizontal" method="post" action="#">
+                    
+                                                        <div class="form-group">
+                                                            <label for="name" class="cols-sm-2 control-label">Nome Del Fotografo</label>
+                                                            <div class="cols-sm-10">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Inserisci Nome Del Fotografo" />
+                                                                </div>
+                                                            </div>
+
+
+                                                            
+                                                                    <label for="pic" class="cols-sm-2 control-label">Pic Del Fotografo</label>
+                                                                    <div class="cols-sm-10">
+                                                                        <div class="input-group">
+                                                                        
+                                                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                                            <input type="file" ,class="form-file" ,id="file-upload" accept="image/*" onchange="loadFile(event)">
+                                                                            <br> <br>
+                                                                            <img id="output",width="80" height="80"/>
+                                                                            <script>
+                                                                                 var loadFile = function(event) {
+                                                                                 var output = document.getElementById('output');
+                                                                                     output.src = URL.createObjectURL(event.target.files[0]);
+                                                                                        };
+                                                                             </script>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br> <br>
+                                                        <div class="form-group ">
+                                                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Registera Fotografo</button>
+                                                        </div>
+                                                        <style type="text/css">
+                                                        
+                                                          img {
+                                                                 border-radius: 60%;
+                                                                                            }
+                                                           </style>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                    
+                                            </div>
+                                        </div>
+                                    </div>
+                    </div>
+    </body>
+</html>

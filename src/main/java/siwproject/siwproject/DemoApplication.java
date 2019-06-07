@@ -23,6 +23,8 @@ public class DemoApplication {
 	public CommandLineRunner demo() {
 	return (args) -> {
 		log.info("dddddd");
+
+		
 		};
 	}
 
