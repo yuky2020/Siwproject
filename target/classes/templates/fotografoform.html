@@ -1,74 +1,121 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Inserisci Fotografo</title>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Inserisci Fotografo</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/navbar.css">
     <link rel="stylesheet" href="/resources/css/loginfotografo.css">
 
 
-    </head>
+
+</head>
 
 
-    <body>
-            <div class="container">
-                    <div class="row justify-content-center">
-                                        <div class="col-md-8">
-                                            <div class="card">
-                                                <div class="card-header">Register</div>
-                                                <div class="card-body">
-                    
-                                                    <form class="form-horizontal" method="post" action="#">
-                    
-                                                        <div class="form-group">
-                                                            <label for="name" class="cols-sm-2 control-label">Nome Del Fotografo</label>
-                                                            <div class="cols-sm-10">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Inserisci Nome Del Fotografo" />
-                                                                </div>
-                                                            </div>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col pl-0 pr-0">
+                <div class="row">
+                    <div class="col pl-0 pr-0">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <a class="navbar-brand brand" href="#">SiLpH</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
 
-
-                                                            
-                                                                    <label for="pic" class="cols-sm-2 control-label">Pic Del Fotografo</label>
-                                                                    <div class="cols-sm-10">
-                                                                        <div class="input-group">
-                                                                        
-                                                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                                            <input type="file" ,class="form-file" ,id="file-upload" accept="image/*" onchange="loadFile(event)">
-                                                                            <br> <br>
-                                                                            <img id="output",width="80" height="80"/>
-                                                                            <script>
-                                                                                 var loadFile = function(event) {
-                                                                                 var output = document.getElementById('output');
-                                                                                     output.src = URL.createObjectURL(event.target.files[0]);
-                                                                                        };
-                                                                             </script>
-                                                                        </div>
-                                                                    </div>
-                                                                    <br> <br>
-                                                        <div class="form-group ">
-                                                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Registera Fotografo</button>
-                                                        </div>
-                                                        <style type="text/css">
-                                                        
-                                                          img {
-                                                                 border-radius: 60%;
-                                                                                            }
-                                                           </style>
-                                                        </div>
-
-                                                    </form>
-                                                </div>
-                    
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="collapse navbar-collapse navback" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active nav-item-back">
+                                        <a class="nav-link item" href="mostraFotografi.html"> Fotografi </a>
+                                    </li>
+                                    <li class="nav-item active nav-item-back">
+                                        <a class="nav-link item" href="mostraAlbum.html"> Album</a>
+                                    </li>
+                                    <li class="nav-item active nav-item-back">
+                                        <a class="nav-link item" href="mostraFoto.html"> Foto </a>
+                                    </li>
+                                    <li class="nav-item active nav-item-back">
+                                        <a class="nav-link item" href="paginaAdmin.html">Personale abilitato</a>
+                                    </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
                     </div>
-    </body>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form class="form-horizontal" method="post" action="#">
+
+                            <div class="form-group">
+                                <label for="name" class="cols-sm-2 control-label">Nome del fotografo</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa"
+                                                aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="name" id="name"
+                                            placeholder="Inserisci Nome Del Fotografo" />
+                                    </div>
+                                </div>
+
+
+
+                                <label for="pic" class="cols-sm-2 control-label">Foto profilo</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+
+                                        <span class="input-group-addon"><i class="fa fa-user fa"
+                                                aria-hidden="true"></i></span>
+                                        <input type="file" ,class="form-file" ,id="file-upload" accept="image/*"
+                                            onchange="loadFile(event)">
+                                        <br> <br>
+                                        <img id="output" ,width="80" height="80" />
+                                        <script>
+                                            var loadFile = function (event) {
+                                                var output = document.getElementById('output');
+                                                output.src = URL.createObjectURL(event.target.files[0]);
+                                            };
+                                        </script>
+                                    </div>
+                                </div>
+                                <br> <br>
+                                <div class="form-group ">
+                                    <button type="button"
+                                        class="btn btn-primary btn-lg btn-block login-button">Registra
+                                        Fotografo</button>
+                                </div>
+                                <style type="text/css">
+                                    img {
+                                        border-radius: 60%;
+                                    }
+                                </style>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

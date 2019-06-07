@@ -1,24 +1,30 @@
 body {
-
+    width:100%;
   }
   .starter-template {
     padding: 3rem 1.5rem;
     text-align: center;
   }
   
-  h1{
-    
-  }
-  
-  h2{
-      
-  }
-
-
-
-.navback{
-    background-color: white;
-    border: black solid 2px;
-    border-radius: 10px;
+.button{
+  border:none;
+  color:black !important;
+  background: white;
+  size: 20px;
+  margin-top:5%;
+  margin-bottom: 5%;
 }
-.navbackin{ }
+
+.button:hover{
+  border:lightgreen solid 1px;
+  background: lightgreen;
+  color:white !important;
+}
+
+.box{
+  margin-top:5%;
+  border: solid lightgreen 1px;
+  position: center;
+  text-align: center;
+  }
+

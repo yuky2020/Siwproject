@@ -7,10 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
+import siwproject.siwproject.client.AmazonClient;
 import siwproject.siwproject.model.Album;
+import siwproject.siwproject.model.Amministratore;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.AlbumService;
@@ -25,6 +30,13 @@ public class MainController {
     AlbumService albumService;
     @Autowired
     FotoService fotoService;
+
+    private AmazonClient client;
+
+    @Autowired
+    MainController(AmazonClient client) {
+        this.client = client;
+    }
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
@@ -76,9 +88,15 @@ public class MainController {
         return "ciao";
     }
 
-    @RequestMapping(value = { "/gallery" }, method = RequestMethod.GET)
-    public String pagegallery(Model model) {
+    @RequestMapping(value = "/test")
+    public String test(Model model) {
+        return "test";
+    }
 
+    @RequestMapping(value = { "/galleria" }, method = RequestMethod.GET)
+    public String pagegallery(Model model) {
+        List<Foto> foto = fotoService.tutte();
+        model.addAttribute("foto", foto);
         return "galleria";
     }
 
@@ -99,6 +117,12 @@ public class MainController {
     @RequestMapping(value = "/SetPassword", method = RequestMethod.GET)
     public String SetPassword(Model model) {
         return "setPassword";
+    }
+
+    @RequestMapping(value = "/paginaAdmin", method = RequestMethod.GET)
+    public String paginaAdmind(Model model) {
+        model.addAttribute("admin", new Amministratore("carlo", "1234"));
+        return "paginaAdmin";
     }
 
 }

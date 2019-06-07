@@ -19,6 +19,10 @@ public class Foto {
 
 	public Foto() {
 	}
+
+	public Foto(String url) {
+		this.url = url;
+	}
 	// Metodi getter e setter
 
 	public long getId() {
