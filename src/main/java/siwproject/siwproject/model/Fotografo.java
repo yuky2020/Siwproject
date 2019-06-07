@@ -16,20 +16,23 @@ public class Fotografo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(nullable = false, unique = true )
+	@Column(nullable = false, unique = true)
 	private String nome;
+	private String picUrl;
 	@OneToMany
 	private List<Foto> foto;
 	@OneToMany
 	private List<Album> album;
-	
-	public Fotografo() {}
+
+	public Fotografo() {
+	}
+
 	public Fotografo(String nome) {
 		this.nome = nome;
 	}
 
-	/*METODI GETTER E SETTER*/
-	
+	/* METODI GETTER E SETTER */
+
 	public long getId() {
 		return id;
 	}
@@ -61,9 +64,18 @@ public class Fotografo {
 	public void setAlbum(List<Album> album) {
 		this.album = album;
 	}
-	 @Override
-	 public boolean equals(Object obj) {
-		 Fotografo that = (Fotografo) obj;
-		 return this.nome.equals(that.nome);
-	 }
+
+	public String getPicUrl() {
+		return this.picUrl;
+	}
+
+	public void setPicUrl(String url) {
+		this.picUrl = url;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Fotografo that = (Fotografo) obj;
+		return this.nome.equals(that.nome);
+	}
 }

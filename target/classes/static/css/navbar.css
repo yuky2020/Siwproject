@@ -3,7 +3,23 @@
   padding: 3rem 1.5rem;
   text-align: center;
 }
+.navbutton{
+    background:#ffe49e;
+    border-color: orange;
+    color:orange;
+}
 
+.navbutton:hover{
+    background:orange;
+    border-color:orange;
+}
+
+.navtext{
+    border-color: orange;
+}
+.navtext:focus{
+    border-color: orange;
+}
 h1{
     color:#0000FF;
 }

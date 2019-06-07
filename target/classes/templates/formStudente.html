@@ -1,49 +1,55 @@
 <html>
-    <head>
-        <title> Form studente </title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="/resources/css/main.css">
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col pl-0 pr-0">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand brand" href="#">SiLpH</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<head>
+    <title> Form studente </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/main.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col pl-0 pr-0">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand brand" href="index">SiLpH</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                        </button>
-                    
-                        <div class="collapse navbar-collapse navback" id="navbarSupportedContent">
+                    </button>
+
+                    <div class="collapse navbar-collapse navbackin" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active nav-item-back">
-                            <a  class="nav-link item" href="mostraFotografi.html"> Fotografi </a>                
-                        </li>
-                            <li class="nav-item active nav-item-back">
-                                <a class="nav-link item" href="mostraAlbum.html"> Album</a>
+                            <li class="nav-item active ">
+                                <a class="nav-link item" href="mostraFotografi"> Fotografi </a>
                             </li>
-                            <li class="nav-item active nav-item-back">
-                                <a class="nav-link item" href="mostraFoto.html"> Foto </a>
+                            <li class="nav-item active">
+                                <a class="nav-link item" href="mostraAlbum"> Album </a>
                             </li>
-                            <li class="nav-item disabled">
-                            <a class="nav-link disableditem" href="paginaAdmin.html">Personale abilitato</a>
+                            <li class="nav-item active">
+                                <a class="nav-link item" href="mostraFoto"> Foto </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link item" href="login">Personale abilitato</a>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <input class="form-control mr-sm-2 navtext" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0 navbutton" type="submit">Search</button>
                         </form>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            </div>
-            <div class="row">
-                <form action="fotografoController" method="POST">
-                   Nome: <input type="text" name="nome">
-                </form>
+                    </div>
+                </nav>
             </div>
         </div>
-    </body>
+        <div class="row">
+            <form action="fotografoController" method="POST">
+                Nome: <input type="text" name="nome">
+            </form>
+        </div>
+    </div>
+
+</body>
+
 </html>

@@ -7,11 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
 import siwproject.siwproject.model.Album;
@@ -30,13 +27,6 @@ public class MainController {
     AlbumService albumService;
     @Autowired
     FotoService fotoService;
-
-    private AmazonClient client;
-
-    @Autowired
-    MainController(AmazonClient client) {
-        this.client = client;
-    }
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {

@@ -1,70 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title>login</title>
 
-            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <link rel="stylesheet" href="/resources/css/login.css">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="stylesheet" href="/resources/css/main.css">
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>login</title>
 
-      
-    <body>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/resources/css/login.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/resources/css/main.css">
+  <link rel="stylesheet" href="/resources/css/navbar.css">
+</head>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="index">SiLpH</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                  
-                    <div class="collapse navbar-collapse navbackin" id="navbarSupportedContent">
-                      <ul class="navbar-nav mr-auto">
-                       <li class="nav-item active ">
-                          <a  class="nav-link item" href="mostraFotografi"> Fotografi </a>                
-                       </li>
-                        <li class="nav-item active">
-                             <a class="nav-link item" href="mostraAlbum"> Album </a>
-                        </li>
-                        <li class="nav-item active">
-                             <a class="nav-link item" href="mostraFoto"> Foto </a>
-                        </li>
-                        <li class="nav-item active navback">
-                          <a class="nav-link item" href="login">Personale abilitato</a>
-                        </li>
-                      </ul>
-                      <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                      </form>
-                    </div>
-                  </nav>
 
-            <div class="container login-container">
-                    <div class="row">
-                        <div class="col-md-6 login-come amministratore ">
-                            <h3>Login come amministratore</h3>
-                            <form action="loginValidator" method="POST">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Username *" value="" name="username"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Your Password *" value="",name="password" >
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btnSubmit" value="submit" />
-                                </div>
-                                <div class="form-group">
-                                    <a href="SetPassword" class="ForgetPwd">Forget Password?</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    </body>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col pl-0 pr-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand brand" href="index">SiLpH</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbackin" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active ">
+                <a class="nav-link item" href="mostraFotografi"> Fotografi </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link item" href="mostraAlbum"> Album </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link item" href="mostraFoto"> Foto </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link item" href="login">Personale abilitato</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2 navtext" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0 navbutton" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container login-container">
+
+        <div class="col-md-6 login-come amministratore ">
+
+          <form action="loginValidator" method="POST">
+            <h3>Login come amministratore</h3><br>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username *" value="" name="username" />
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Your Password *" value="" ,name="password" />
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btnSubmit" value="submit" />
+            </div>
+            <div class="form-group">
+              <a href="SetPassword" class="ForgetPwd">Forget Password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
