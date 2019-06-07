@@ -15,16 +15,16 @@ import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotoService;
-import siwproject.siwproject.pg.FotografoServices;
+import siwproject.siwproject.pg.FotografoService;
 
 @Controller
 public class MainController {
     @Autowired
-    FotografoServices fotografoServices;
+    FotografoService fotografoService;
     @Autowired
-    AlbumService albumServices;
+    AlbumService albumService;
     @Autowired
-    FotoService fotoServices;
+    FotoService fotoService;
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
@@ -43,7 +43,7 @@ public class MainController {
 
     @RequestMapping(value = { "/mostraAlbum" }, method = RequestMethod.GET)
     public String viewAlbum(Model model, HttpServletRequest req) {
-        List<Album> albums = albumServices.getAlbum();
+        List<Album> albums = albumService.tutti();
         req.setAttribute("albums", albums);
 
         return "mostraAlbum";
@@ -51,7 +51,7 @@ public class MainController {
 
     @RequestMapping(value = { "/mostraFoto" }, method = RequestMethod.GET)
     public String viewFoto(Model model, HttpServletRequest req) {
-        List<Foto> fotos = fotoServices.getAllFoto();
+        List<Foto> fotos = fotoService.tutte();
         req.setAttribute("fotos", fotos);
 
         return "mostraFoto";
@@ -59,7 +59,7 @@ public class MainController {
 
     @RequestMapping(value = { "/mostraFotografi" }, method = RequestMethod.GET)
     public String viewFotografi(Model model, HttpServletRequest req) {
-        List<Fotografo> fotografi = fotografoServices.getAllFotografos();
+        List<Fotografo> fotografi = fotografoService.tutti();
         req.setAttribute("fotografi", fotografi);
 
         return "mostraFotografi";
@@ -88,17 +88,17 @@ public class MainController {
         return "login";
 
     }
- 
+
     @RequestMapping(value = { "/fotografoForm" }, method = RequestMethod.GET)
     public String pageFotografoForm(Model model) {
 
         return "fotografoform";
 
     }
-    @RequestMapping(value="/SetPassword", method=RequestMethod.GET)
+
+    @RequestMapping(value = "/SetPassword", method = RequestMethod.GET)
     public String SetPassword(Model model) {
         return "setPassword";
     }
-    
 
 }

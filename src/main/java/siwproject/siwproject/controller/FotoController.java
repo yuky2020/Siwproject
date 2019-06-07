@@ -3,7 +3,6 @@ package siwproject.siwproject.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.codec.multipart.Part;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
-import siwproject.siwproject.controller.*;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotoService;
