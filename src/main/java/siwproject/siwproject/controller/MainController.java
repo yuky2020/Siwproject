@@ -39,4 +39,9 @@ public class MainController {
         return "test";
     }
 
+    @RequestMapping("paginaAdmin")
+    public String getConsole(Model model) {
+        return "paginaAdmin";
+    }
+
 }
