@@ -1,6 +1,9 @@
 package siwproject.siwproject.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,4 +42,13 @@ public class MainController {
         return "test";
     }
 
+    @RequestMapping("paginaAdmin")
+    public String getConsole(Model model) {
+        return "paginaAdmin";
+    }
+   @RequestMapping("gallery")
+   public String getGaleria(Model model,HttpServletRequest a){
+       
+       return "galleria";
+   }
 }

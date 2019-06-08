@@ -5,9 +5,12 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,11 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
 import siwproject.siwproject.model.Foto;
+import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.validator.FotoValidator;
 
+@Controller
 public class FotoController {
     @Autowired
     private FotoService fotoService;
@@ -41,24 +46,24 @@ public class FotoController {
     @RequestMapping("/aggiungiFoto")
     public String aggiungiFoto(Model model) {
         model.addAttribute("newFoto", new Foto());
-        return "formFoto";
+        return "newFoto";
     }
 
     @RequestMapping(value = "/foto", method = RequestMethod.POST)
-    public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResult,
-            @RequestPart(value = "file") MultipartFile file, @RequestParam("fotografo") String fotografo,
-            @RequestParam("album") String album) {
-        String link = this.amazonClient.uploadFile(file);
-        String linkb = "https://silph.s3.eu-west-3.amazonaws.com" + link.substring(40);
-        foto.setUrl(linkb);
-        foto.setAlbum(this.albumService.albumPerNome(album));
-        foto.setFotografo(this.fotografoService.fotografoPerNome(fotografo));
-        this.fotoValidator.validate(foto, bindingResult);
-        if (!bindingResult.hasErrors()) {
-            this.fotoService.inserisci(foto);
+    public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
+            @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo) {
+        String url = "https://silph.s3.eu-west-3.amazonaws.com" + this.amazonClient.uploadFile(file);
+        foto.setUrl(url);
+        Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
+        foto.setFotografo(fotografo);
+        fotoValidator.validate(foto, bindingResults);
+        if (!bindingResults.hasErrors()) {
+            fotografo.getFoto().add(foto);
+            fotoService.inserisci(foto);
             model.addAttribute("fotoSuccess", "Foto inserita con successo");
             return "paginaAdmin";
         } else {
+            this.amazonClient.deleteFileFromS3Bucket(url);
             return "newFoto";
         }
     }

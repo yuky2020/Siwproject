@@ -15,7 +15,9 @@ import siwproject.siwproject.model.*;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.validator.FotografoValidator;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +35,7 @@ public class FotografoController extends HttpServlet {
 	@RequestMapping("/aggiungiFotografo")
 	public String aggiungiFotografo(Model model) {
 		model.addAttribute("fotografo", new Fotografo());
-		return "fotografoForm";
+		return "newFotografo";
 	}
 
 	@RequestMapping(value = "/fotografo", method = RequestMethod.POST)
@@ -58,4 +60,10 @@ public class FotografoController extends HttpServlet {
 		return "mostraFotografi";
 	}
 
+	@RequestMapping(value = "/paginaFotografo/{id}", method = RequestMethod.GET)
+	public String getPaginaFotografo(Model model, @PathVariable("id") String id) {
+
+		model.addAttribute("fotografo", fotografoService.fotografoPerId(Long.parseLong(id)));
+		return "paginaFotografo";
+	}
 }
