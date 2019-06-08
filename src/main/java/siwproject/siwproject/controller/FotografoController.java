@@ -44,7 +44,7 @@ public class FotografoController extends HttpServlet {
 		if (!bindingResult.hasErrors()) {
 			fotografoService.inserisci(fotografo);
 			model.addAttribute("fotografoSuccess", fotografo.getNome());
-			return "test";
+			return "paginaAdmin";
 		} else {
 			return "newFotografo";
 		}

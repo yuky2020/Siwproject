@@ -57,7 +57,7 @@ public class FotoController {
         if (!bindingResult.hasErrors()) {
             this.fotoService.inserisci(foto);
             model.addAttribute("fotoSuccess", "Foto inserita con successo");
-            return "console";
+            return "paginaAdmin";
         } else {
             return "newFoto";
         }

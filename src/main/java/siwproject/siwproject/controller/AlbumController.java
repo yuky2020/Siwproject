@@ -46,7 +46,7 @@ public class AlbumController extends HttpServlet {
 		if (!bindingResult.hasErrors()) {
 			this.albumService.inserisci(album);
 			model.addAttribute("album success", "Album inserito con successo");
-			return "console";
+			return "paginaAdmin";
 		} else {
 			return "newAlbum";
 		}
@@ -56,6 +56,6 @@ public class AlbumController extends HttpServlet {
 	public String viewAlbum(Model model) {
 		List<Album> albums = albumService.tutti();
 		model.addAttribute("albums", albums);
-		return "mostraAlbum";
+		return "paginaA";
 	}
 }
