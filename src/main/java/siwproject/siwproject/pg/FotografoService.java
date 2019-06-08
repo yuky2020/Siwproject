@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Fotografo;
+import siwproject.siwproject.repository.FotografoRepository;
 
 @Service
 public class FotografoService {
@@ -13,8 +14,8 @@ public class FotografoService {
 	private FotografoRepository fotografoRepository;
 
 	@Transactional
-	public Fotografo inserisci(Fotografo f) {
-		return fotografoRepository.save(f);
+	public void inserisci(Fotografo f) {
+		this.fotografoRepository.save(f);
 	}
 
 	@Transactional
@@ -32,6 +33,7 @@ public class FotografoService {
 		return !(this.fotografoPerId(f.getId()) == null);
 	}
 
+	@Transactional
 	public Fotografo fotografoPerNome(String nomeFotografo) {
 		return this.fotografoRepository.findByNome(nomeFotografo);
 	}

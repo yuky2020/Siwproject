@@ -1,5 +1,7 @@
 package siwproject.siwproject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServlet;
 import javax.validation.Valid;
 
@@ -14,6 +16,7 @@ import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.validator.FotografoValidator;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +32,8 @@ public class FotografoController extends HttpServlet {
 
 	@RequestMapping("/aggiungiFotografo")
 	public String aggiungiFotografo(Model model) {
-		model.addAttribute("newFotografo", new Fotografo());
-		return "studenteForm";
+		model.addAttribute("fotografo", new Fotografo());
+		return "fotografoForm";
 	}
 
 	@RequestMapping(value = "/fotografo", method = RequestMethod.POST)
@@ -39,13 +42,20 @@ public class FotografoController extends HttpServlet {
 		fotografo.setNome(nome);
 		this.fotografoValidator.validate(fotografo, bindingResult);
 		if (!bindingResult.hasErrors()) {
-			this.fotografoService.inserisci(fotografo);
-			model.addAttribute("fotografoSuccess", "Fotografo inserito con successo");
-			return "console";
+			fotografoService.inserisci(fotografo);
+			model.addAttribute("fotografoSuccess", fotografo.getNome());
+			return "test";
 		} else {
-			return "fotografoForm";
+			return "newFotografo";
 		}
 
+	}
+
+	@RequestMapping(value = { "/mostraFotografi" }, method = RequestMethod.GET)
+	public String viewFotografi(Model model) {
+		List<Fotografo> fotografi = fotografoService.tutti();
+		model.addAttribute("fotografi", fotografi);
+		return "mostraFotografi";
 	}
 
 }

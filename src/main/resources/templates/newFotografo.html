@@ -60,60 +60,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-
-                        <form class="form-horizontal" method="post" action="newFotografo">
-
-                            <div class="form-group">
-                                <label for="name" class="cols-sm-2 control-label">Nome del fotografo</label>
-                                <div class="cols-sm-10">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user fa"
-                                                aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="name" id="name"
-                                            placeholder="Inserisci Nome Del Fotografo" />
-                                    </div>
-                                </div>
-
-
-
-                                <label for="pic" class="cols-sm-2 control-label">Foto profilo</label>
-                                <div class="cols-sm-10">
-                                    <div class="input-group">
-
-                                        <span class="input-group-addon"><i class="fa fa-user fa"
-                                                aria-hidden="true"></i></span>
-                                        <input type="file" ,class="form-file" ,id="file-upload" accept="image/*"
-                                            onchange="loadFile(event)">
-                                        <br> <br>
-                                        <img id="output" ,width="80" height="80" />
-                                        <script>
-                                            var loadFile = function (event) {
-                                                var output = document.getElementById('output');
-                                                output.src = URL.createObjectURL(event.target.files[0]);
-                                            };
-                                        </script>
-                                    </div>
-                                </div>
-                                <br> <br>
-                                <div class="form-group ">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Registra
-                                        Fotografo</button>
-                                </div>
-                                <style type="text/css">
-                                    img {
-                                        border-radius: 60%;
-                                    }
-                                </style>
-                            </div>
-
-                        </form>
-                    </div>
-
-                </div>
-            </div>
+            <form action="fotografo" method="POST" enctype="multipart/form-data">
+                Nome: <input type="text" name="nome"><br>
+                ProfilePic: <input type="file" name="pic"><br>
+                <input type="submit" value="Inserisci"><br>
+            </form>
         </div>
     </div>
 </body>

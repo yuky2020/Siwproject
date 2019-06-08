@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Album;
+import siwproject.siwproject.repository.AlbumRepository;
 
 @Service
 public class AlbumService {

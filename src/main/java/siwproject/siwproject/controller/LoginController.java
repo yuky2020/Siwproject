@@ -1,5 +1,5 @@
 package siwproject.siwproject.controller;
- 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,17 @@ public class LoginController {
     AmministratoreServices amministratoreServices;
 
     @PostMapping("/loginValidator")
-	public String acessoAdmin(@RequestBody String username,@RequestBody String password, HttpServletRequest req) {
-       //solo per il testing
+    public String acessoAdmin(@RequestBody String username, @RequestBody String password, HttpServletRequest req) {
+        // solo per il testing
         Amministratore root = new Amministratore("root", "toor");
-        
-        amministratoreServices.addAmministratore(root);
-        //fine 
-            Amministratore a = amministratoreServices.getAmministratoreByusername(username);
-                
-            if(a!=null &&a.checkPwd(password)) return "paginaAdmin";
-            else return "login";}
-                                }
+
+        amministratoreServices.inserisci(root);
+        // fine
+        Amministratore a = amministratoreServices.amministratorePerUsername(username);
+
+        if (a != null && a.checkPwd(password))
+            return "paginaAdmin";
+        else
+            return "login";
+    }
+}

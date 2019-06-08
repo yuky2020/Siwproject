@@ -1,4 +1,4 @@
-package siwproject.siwproject.pg;
+package siwproject.siwproject.repository;
 
 import java.util.List;
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Foto;
+import siwproject.siwproject.repository.FotoRepository;
 
 @Service
 public class FotoService {
@@ -23,7 +24,7 @@ public class FotoService {
 
     @Transactional
     public List<Foto> tutte() {
-        return fotoRepository.findAll();
+        return this.fotoRepository.findAll();
     }
 
     @Transactional

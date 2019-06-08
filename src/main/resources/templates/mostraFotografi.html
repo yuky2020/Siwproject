@@ -11,7 +11,9 @@
         <link rel="stylesheet" href="/resources/css/main.css">
      
     </head>
-
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col pl-0 pr-0">
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index">SiLpH</a>
@@ -40,7 +42,12 @@
               </form>
             </div>
           </nav>
-
+        </div></div>
+        <div class="row">
+          <ul th:each="fotografo : ${fotografi}">
+            <li> <span th:text="${fotografo.nome}"/> </li>
+          </ul>
+        </div>
 
   
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

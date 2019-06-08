@@ -1,5 +1,7 @@
 package siwproject.siwproject.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +59,14 @@ public class FotoController {
             model.addAttribute("fotoSuccess", "Foto inserita con successo");
             return "console";
         } else {
-            return "formfoto";
+            return "newFoto";
         }
+    }
 
+    @RequestMapping(value = { "/mostraFoto" }, method = RequestMethod.GET)
+    public String viewFoto(Model model) {
+        List<Foto> foto = fotoService.tutte();
+        model.addAttribute("fotos", foto);
+        return "mostraFoto";
     }
 }

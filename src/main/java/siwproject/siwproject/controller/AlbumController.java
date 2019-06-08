@@ -1,5 +1,7 @@
 package siwproject.siwproject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServlet;
 import javax.validation.Valid;
 
@@ -46,7 +48,14 @@ public class AlbumController extends HttpServlet {
 			model.addAttribute("album success", "Album inserito con successo");
 			return "console";
 		} else {
-			return "albumForm";
+			return "newAlbum";
 		}
+	}
+
+	@RequestMapping(value = { "/mostraAlbum" }, method = RequestMethod.GET)
+	public String viewAlbum(Model model) {
+		List<Album> albums = albumService.tutti();
+		model.addAttribute("albums", albums);
+		return "mostraAlbum";
 	}
 }
