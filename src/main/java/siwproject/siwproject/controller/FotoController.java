@@ -48,11 +48,11 @@ public class FotoController {
         model.addAttribute("newFoto", new Foto());
         return "newFoto";
     }
-
+//rimosso link qui perche veniva duplicato
     @RequestMapping(value = "/foto", method = RequestMethod.POST)
     public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
             @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo) {
-        String url = "https://silph.s3.eu-west-3.amazonaws.com" + this.amazonClient.uploadFile(file);
+        String url =  this.amazonClient.uploadFile(file);
         foto.setUrl(url);
         Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
         foto.setFotografo(fotografo);
