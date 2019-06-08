@@ -52,7 +52,7 @@ public class FotoController {
     @RequestMapping(value = "/foto", method = RequestMethod.POST)
     public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
             @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo) {
-        String url =  this.amazonClient.uploadFile(file);
+        String url = "https://s3.eu-west-3" + this.amazonClient.uploadFile(file).substring(20);
         foto.setUrl(url);
         Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
         foto.setFotografo(fotografo);
