@@ -65,6 +65,7 @@ public class AlbumController extends HttpServlet {
 		return "mostraAlbum";
 	}
 
+	
 	@RequestMapping(value = { "/paginaAlbum/{id}" }, method = RequestMethod.GET)
 	public String wiewAlbum(Model model, @ModelAttribute("id") Long id) {
 		model.addAttribute("album", albumService.albumPerId(id));

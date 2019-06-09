@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <!-- Core CSS file -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/resources/jscc/photoswipe.css">
@@ -18,6 +19,7 @@
 
     <!-- UI JS file -->
     <script src="/resources/jscc/photoswipe-ui-default.min.js"></script>
+    <title th:text="${fotografo.nome}" />
 </head>
 
 <body>
@@ -25,41 +27,38 @@
         <div class="row">
             <div class="col pl-0 pr-0">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand brand" href="index">SiLpH</a>
+                    <a class="navbar-brand brand" href="#">SiLpH</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse navbackin" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse navback" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active ">
+                            <li class="nav-item active nav-item-back">
                                 <a class="nav-link item" href="/mostraFotografi"> Fotografi </a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link item" href="/mostraAlbum"> Album </a>
+                            <li class="nav-item active nav-item-back">
+                                <a class="nav-link item" href="mostraAlbum"> Album</a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link item" href="/mostraFoto"> Foto </a>
+                            <li class="nav-item active nav-item-back">
+                                <a class="nav-link item" href="mostrafoto"> Foto </a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link item" href="/login">Personale abilitato</a>
+                            <li class="nav-item disabled">
+                                <a class="nav-link disableditem" href="paginaAdmin.html">Personale abilitato</a>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2 navtext" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0 navbutton" type="submit">Search</button>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
                 </nav>
             </div>
         </div>
         <div class="row">
-            <span th:text="${album.nome}" />
-            <h1> Autore: <a th:href="@{'/paginaFotografo' + '/' + ${album.fotografo.id}}"> <span
-                        th:text="${album.fotografo.nome}" /> </a></h1>
+            <h1 th:text="${album.nome}" /><br>
             <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
 
 
@@ -87,7 +86,7 @@
             <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
                 <!-- Background of PhotoSwipe. 
-          It's a separate element, as animating opacity is faster than rgba(). -->
+              It's a separate element, as animating opacity is faster than rgba(). -->
                 <div class="pswp__bg"></div>
 
                 <!-- Slides wrapper with overflow:hidden. -->
@@ -144,7 +143,6 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -356,11 +354,6 @@
         // execute above function
         initPhotoSwipeFromDOM('.my-gallery');
     </script>
-
-
-    </div>
-
-    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
