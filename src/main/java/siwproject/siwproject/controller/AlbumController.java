@@ -35,12 +35,13 @@ public class AlbumController extends HttpServlet {
 	private FotografoService fotografoService;
 
 	@RequestMapping("/aggiungiAlbum")
-	public String aggiungiAlbum(Model model,@RequestAttribute("amministratore") Amministratore amministratore) {
-		if(amministratore==null){
+	public String aggiungiAlbum(Model model) {
+	   	//if(amministratore!=null){
 		
 		model.addAttribute("album", new Album());
-		return "newAlbum";}
-		else return "error";
+		return "newAlbum";
+	//}
+		//else return "error";
 	}
 
 	@RequestMapping(value = "/album", method = RequestMethod.POST)

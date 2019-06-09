@@ -65,9 +65,12 @@ public class FotoController {
         fotoValidator.validate(foto, bindingResults);
 
         if (!bindingResults.hasErrors()) {
-            fotografo.getFoto().add(foto);
-            // album.getFoto().add(foto);
+            
             fotoService.inserisci(foto);
+            //fotografo.getFoto().add(foto);
+            //fotografoService.inserisci(fotografo);
+            // album.getFoto().add(foto);
+             //albumService.inserisci(album);
             model.addAttribute("fotoSuccess", "Foto inserita con successo");
             return "paginaAdmin";
         } else {
