@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import siwproject.siwproject.model.Amministratore;
 
 public interface AmministratoreRepository extends CrudRepository<Amministratore, Long> {
-    Amministratore findByusername(String username);
+    Amministratore findByUsername(String username);
 
     List<Amministratore> findAll();
 }

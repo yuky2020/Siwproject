@@ -28,6 +28,6 @@ public class AmministratoreServices {
 
 	@Transactional
 	public Amministratore amministratorePerUsername(String username) {
-		return amministratoreRepository.findByusername(username);
+		return amministratoreRepository.findByUsername(username);
 	}
 }
