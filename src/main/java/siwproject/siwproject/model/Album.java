@@ -1,6 +1,8 @@
 package siwproject.siwproject.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.*;
@@ -13,7 +15,7 @@ public class Album {
 	private long id;
 	private String nome;
 	@OneToMany
-	private Map<String, Foto> foto;
+	private List<Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;
 
@@ -22,7 +24,7 @@ public class Album {
 
 	public Album(String nome) {
 		this.nome = nome;
-		this.foto = new HashMap<String, Foto>();
+		this.foto = new ArrayList<>();
 	}
 
 	/* METODI GETTER E SETTER */
@@ -43,11 +45,11 @@ public class Album {
 		this.nome = nome;
 	}
 
-	public Map<String, Foto> getFoto() {
+	public List<Foto> getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Map<String, Foto> foto) {
+	public void setFoto(List<Foto> foto) {
 		this.foto = foto;
 	}
 

@@ -30,7 +30,7 @@ public class FotografoService {
 
 	@Transactional
 	public boolean alreadyExists(Fotografo f) {
-		return !(this.fotografoPerId(f.getId()) == null);
+		return fotografoRepository.existsByNome(f.getNome());
 	}
 
 	@Transactional

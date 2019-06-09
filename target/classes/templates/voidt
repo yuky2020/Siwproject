@@ -49,12 +49,6 @@
             </div>
         </div>
         <div class="row">
-            <form th:action="@{/album}" th:object="${album}" method="POST">
-                Nome: <input type="text" th:field="*{nome}"/><br>
-                Fotografo: <input type="text" name="nomeFotografo"><br>
-                <input type="submit" value="Inserisci">
-            </form>
-        </div>
     </div>
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

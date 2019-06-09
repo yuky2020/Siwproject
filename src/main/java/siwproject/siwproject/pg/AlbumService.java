@@ -34,4 +34,8 @@ public class AlbumService {
         return this.albumRepository.findByNome(nome);
     }
 
+    @Transactional
+    public boolean doesExists(String nomeAlbum) {
+        return this.albumRepository.existsByNome(nomeAlbum);
+    }
 }

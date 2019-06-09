@@ -11,5 +11,7 @@ public interface FotografoRepository extends CrudRepository<Fotografo, Long> {
 
     Fotografo findByNome(String nome);
 
+    boolean existsByNome(String nome);
+
     List<Fotografo> findAll();
 }

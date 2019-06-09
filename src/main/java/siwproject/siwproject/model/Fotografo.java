@@ -2,8 +2,10 @@ package siwproject.siwproject.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,12 +18,12 @@ public class Fotografo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String nome;
 	private String picUrl;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Foto> foto;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Album> album;
 
 	public Fotografo() {

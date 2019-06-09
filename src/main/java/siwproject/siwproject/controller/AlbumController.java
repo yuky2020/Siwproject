@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import siwproject.siwproject.model.Album;
+import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.validator.AlbumValidator;
@@ -33,19 +34,19 @@ public class AlbumController extends HttpServlet {
 
 	@RequestMapping("/aggiungiAlbum")
 	public String aggiungiAlbum(Model model) {
-		model.addAttribute("newAlbum", new Album());
-		return "albumForm";
+		model.addAttribute("album", new Album());
+		return "newAlbum";
 	}
 
 	@RequestMapping(value = "/album", method = RequestMethod.POST)
 	private String inserisciAlbum(@Valid @ModelAttribute("album") Album album, Model model, BindingResult bindingResult,
-			@RequestParam String nomeFotografo, @RequestParam String nomeAlbum) {
-		album.setNome(nomeAlbum);
-		album.setFotografo(this.fotografoService.fotografoPerNome(nomeFotografo));
+			@RequestParam("nomeFotografo") String nomeFotografo) {
+		Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
+		album.setFotografo(fotografo);
 		this.albumValidator.validate(album, bindingResult);
 		if (!bindingResult.hasErrors()) {
+			fotografo.getAlbum().add(album);
 			this.albumService.inserisci(album);
-			model.addAttribute("album success", "Album inserito con successo");
 			return "paginaAdmin";
 		} else {
 			return "newAlbum";
@@ -53,9 +54,15 @@ public class AlbumController extends HttpServlet {
 	}
 
 	@RequestMapping(value = { "/mostraAlbum" }, method = RequestMethod.GET)
-	public String viewAlbum(Model model) {
+	public String viewAlbums(Model model) {
 		List<Album> albums = albumService.tutti();
 		model.addAttribute("albums", albums);
-		return "paginaA";
+		return "mostraAlbum";
+	}
+
+	@RequestMapping(value = { "/paginaAlbum/{id}" }, method = RequestMethod.GET)
+	public String wiewAlbum(Model model, @ModelAttribute("id") Long id) {
+		model.addAttribute("album", albumService.albumPerId(id));
+		return "paginaAlbum";
 	}
 }

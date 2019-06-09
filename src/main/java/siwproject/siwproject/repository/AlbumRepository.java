@@ -15,4 +15,6 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
     List<Album> findByFotografo(Fotografo fotografo);
 
     List<Album> findAll();
+
+    boolean existsByNome(String nome);
 }
