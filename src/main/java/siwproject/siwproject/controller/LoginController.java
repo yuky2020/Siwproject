@@ -26,12 +26,8 @@ public class LoginController {
 
     @PostMapping("/loginValidator")
     public String acessoAdmin(@RequestBody String username, @RequestBody String password, HttpServletRequest req) {
-        // solo per il testing
-        Amministratore root = new Amministratore("root", "toor");
-
-        amministratoreServices.inserisci(root);
-        // fine
-        Amministratore a = amministratoreServices.amministratorePerUsername(username);
+        
+        Amministratore a = amministratoreServices.amministratorePerUsername(username.trim());
 
         if (a != null && a.checkPwd(password))
             return "paginaAdmin";
