@@ -29,7 +29,7 @@ public class LoginController {
         
         Amministratore a = amministratoreServices.amministratorePerUsername(username.trim());
 
-        if (a != null && a.checkPwd(password))
+        if (a != null && a.checkPwd(password.trim()))
             return "paginaAdmin";
         else
             return "login";
