@@ -56,16 +56,16 @@
 
         <div class="col-md-6 login-come amministratore ">
 
-          <form action="loginValidator" method="POST">
+          <form action="loginValidator" method="GET" enctype="text/plain">
             <h3>Login come amministratore</h3><br>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Username *" value="" name="username" />
+              <input type="text" class="form-control" placeholder="Username *"  name="username" />
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" placeholder="Your Password *" value="" ,name="password" />
+              <input type="text" class="form-control" placeholder="Your Password *"  name="pwd" />
             </div>
             <div class="form-group">
-              <input type="submit" class="btnSubmit" value="submit" />
+              <input type="submit" class="btnSubmit" value="conferma" />
             </div>
             <div class="form-group">
               <a href="SetPassword" class="ForgetPwd">Forget Password?</a>

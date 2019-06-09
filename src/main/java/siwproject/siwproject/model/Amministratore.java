@@ -20,7 +20,7 @@ public class Amministratore {
 	@Column(nullable = false, unique = true )
 	private String password;
 	
-	
+	public Amministratore(){}
     public Amministratore(String username ,String password) {
         this.username = username;
         this.password=password;
@@ -28,7 +28,7 @@ public class Amministratore {
     }
 
     public boolean checkPwd(String actual){
-        return username.equals(actual);
+        return password.equals(actual);
     }
 
     public long getId() {
