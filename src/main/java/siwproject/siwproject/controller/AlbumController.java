@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import siwproject.siwproject.model.Album;
+import siwproject.siwproject.model.Amministratore;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotografoService;
@@ -33,14 +35,16 @@ public class AlbumController extends HttpServlet {
 	private FotografoService fotografoService;
 
 	@RequestMapping("/aggiungiAlbum")
-	public String aggiungiAlbum(Model model) {
+	public String aggiungiAlbum(Model model,@RequestAttribute("amministratore") Amministratore amministratore) {
+		if(amministratore==null){
+		
 		model.addAttribute("album", new Album());
-		return "newAlbum";
+		return "newAlbum";}
+		else return "error";
 	}
 
 	@RequestMapping(value = "/album", method = RequestMethod.POST)
-	private String inserisciAlbum(@Valid @ModelAttribute("album") Album album, Model model, BindingResult bindingResult,
-			@RequestParam("nomeFotografo") String nomeFotografo) {
+	private String inserisciAlbum(@Valid @ModelAttribute("album") Album album, Model model, BindingResult bindingResult,@RequestParam("nomeFotografo") String nomeFotografo) {
 		Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
 		album.setFotografo(fotografo);
 		this.albumValidator.validate(album, bindingResult);

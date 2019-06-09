@@ -22,7 +22,7 @@ public class DemoApplication {
 	@Bean
 	public CommandLineRunner demo() {
 	return (args) -> {
-		log.info("dddddd");
+		log.info("Tutto Sembra Funzionare Correttamente");
 
 		
 		};

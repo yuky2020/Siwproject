@@ -35,12 +35,13 @@ public class LoginController {
 
 
  @GetMapping("/loginValidator")
-      String  acessoAdmin(@Valid @RequestParam String username,@RequestParam("pwd")  String pwd ) {
+      String  acessoAdmin(@Valid @RequestParam String username,@RequestParam("pwd")  String pwd ,Model model) {
 
     Amministratore a = amministratoreServices.amministratorePerUsername(username.trim());
-
-        if (a != null && a.checkPwd(pwd.trim()))
-            return "paginaAdmin";
+        if (a != null && a.checkPwd(pwd.trim())){
+          model.addAttribute("amministratore", a);
+          return "paginaAdmin";
+        }
         else
           return "login";
         }

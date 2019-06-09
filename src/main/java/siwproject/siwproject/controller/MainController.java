@@ -42,14 +42,9 @@ public class MainController {
         return "test";
     }
 
-    @RequestMapping("paginaAdmin")
-    public String getConsole(Model model) {
-        return "paginaAdmin";
+    
     }
 
-    @RequestMapping("gallery")
-    public String getGaleria(Model model, HttpServletRequest a) {
+  
+    
 
-        return "galleria";
-    }
-}
