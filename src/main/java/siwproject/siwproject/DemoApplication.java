@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @ServletComponentScan
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = { SecurityAutoConfiguration.class })
 public class DemoApplication {
 	private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 

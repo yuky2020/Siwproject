@@ -1,11 +1,16 @@
 package siwproject.siwproject.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Foto {
@@ -17,10 +22,9 @@ public class Foto {
 	private Fotografo fotografo;
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Album album;
-	@ManyToOne(cascade = CascadeType.REMOVE)
-	private Richiesta richiesta;
 
 	public Foto() {
+
 	}
 
 	public Foto(String url) {
@@ -59,13 +63,4 @@ public class Foto {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public Richiesta getRichiesta() {
-		return richiesta;
-	}
-
-	public void setRichiesta(Richiesta richiesta) {
-		this.richiesta = richiesta;
-	}
-
 }

@@ -59,4 +59,9 @@ public class MainController {
 
     }
 
+    @GetMapping("/cerca")
+    public String ciao() {
+        return "search";
+    }
+
 }

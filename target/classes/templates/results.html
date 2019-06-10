@@ -4,23 +4,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
+    <title>Risultati ricerca</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/resource/css/main.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
-    <title>s</title>
+    <link rel="stylesheet" href="/resources/css/gallery.css">
+    <link rel="stylesheet" href="/resources/jscc/photoswipe.css">
+    <link rel="stylesheet" href="/resources/jscc/default-skin/default-skin.css">
+    <script src="/resources/jscc/photoswipe.min.js"></script>
+    <script src="/resources/jscc/photoswipe-ui-default.min.js"></script>
 </head>
 
 <body>
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar"/>
-        <div class="col1">
-            <ul th:each="fotografo : ${results}">
-                <li th:text="${fotografo.nome}"/>
-            </ul>
+        <div th:if="${hashTag} != null" class="row">
+            <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                <figure th:each="foto : ${hashTag.foto}" class="anteprima" itemprop="associatedMedia" itemscope
+                    itemtype="http://schema.org.ImageObject">
+                    <a th:href="${foto.url}" itemprop="contentUrl" data-size="1024x1024">
+                        <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
+                    </a>
+                </figure>
+            </div>
         </div>
     </div>
+    <div th:insert="fragments/galleryScript :: galleryScript"/>
 </body>
 </html>

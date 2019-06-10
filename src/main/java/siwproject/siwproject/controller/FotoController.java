@@ -1,7 +1,9 @@
 package siwproject.siwproject.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.validation.Valid;
 
@@ -20,9 +22,11 @@ import siwproject.siwproject.client.AmazonClient;
 import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
+import siwproject.siwproject.model.HashTag;
 import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.FotografoService;
+import siwproject.siwproject.pg.HashTagService;
 import siwproject.siwproject.validator.FotoValidator;
 import siwproject.siwproject.watermark.Watermark;
 
@@ -36,6 +40,8 @@ public class FotoController {
     private FotografoService fotografoService;
     @Autowired
     private AlbumService albumService;
+    @Autowired
+    private HashTagService hashTagService;
 
     private AmazonClient amazonClient;
 
@@ -47,16 +53,14 @@ public class FotoController {
     @RequestMapping("/aggiungiFoto")
     public String aggiungiFoto(Model model) {
         Foto foto = new Foto();
-        model.addAttribute("newFoto", foto);
+        model.addAttribute("foto", foto);
         return "newFoto";
     }
 
     @RequestMapping(value = "/foto", method = RequestMethod.POST)
     public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
             @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo,
-            @RequestParam("nomeAlbum") String nomeAlbum) {
-        Watermark a = new Watermark();
-        a.addTextWatermark("Silph", (File) file, (File)file);
+            @RequestParam("nomeAlbum") String nomeAlbum, @RequestParam("hashTagString") String hashTagString) {
         String url = "https://s3.eu-west-3" + this.amazonClient.uploadFile(file).substring(20);
         foto.setUrl(url);
         Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
@@ -66,8 +70,9 @@ public class FotoController {
         fotoValidator.validate(foto, bindingResults);
 
         if (!bindingResults.hasErrors()) {
+            List<HashTag> hashTagList = parseHashTag(hashTagString);
+            linkTags(foto, hashTagList);
             fotoService.inserisci(foto);
-
             return "paginaAdmin";
         } else {
             this.amazonClient.deleteFileFromS3Bucket(url);
@@ -81,5 +86,26 @@ public class FotoController {
         List<Foto> foto = fotoService.tutte();
         model.addAttribute("fotos", foto);
         return "mostraFoto";
+    }
+
+    private List<HashTag> parseHashTag(String hashTagString) {
+        List<HashTag> hashTags = new ArrayList<HashTag>();
+        Scanner sc = new Scanner(hashTagString);
+        sc.useDelimiter("\\s*#\\s*");
+        while (sc.hasNext()) {
+            String tag = sc.next();
+            if (!hashTagService.existsByNome(tag)) {
+                hashTagService.inserisci(new HashTag(tag));
+            }
+            hashTags.add(hashTagService.hashTagPerNome(tag));
+        }
+        sc.close();
+        return hashTags;
+    }
+
+    private void linkTags(Foto foto, List<HashTag> HashTags) {
+        for (HashTag hashTag : HashTags) {
+            hashTag.addFoto(foto);
+        }
     }
 }

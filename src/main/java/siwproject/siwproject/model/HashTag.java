@@ -1,29 +1,34 @@
 package siwproject.siwproject.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
-public class Richiesta {
+public class HashTag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToOne
-    private Dettagli dettagli;
+    private String nome;
     @ManyToMany
+    @JoinTable(name = "hashTag_foto", joinColumns = @JoinColumn(name = "hashTag_id"), inverseJoinColumns = @JoinColumn(name = "foto_id"))
     private List<Foto> foto;
 
-    public Richiesta() {
+    public HashTag() {
     }
 
-    public Richiesta(long id) {
-        this.id = id;
+    public HashTag(String nome) {
+        this.nome = nome;
+        this.foto = new ArrayList<>();
     }
 
     public long getId() {
@@ -34,12 +39,12 @@ public class Richiesta {
         this.id = id;
     }
 
-    public Dettagli getDettagli() {
-        return dettagli;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDettagli(Dettagli dettagli) {
-        this.dettagli = dettagli;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<Foto> getFoto() {
@@ -48,6 +53,10 @@ public class Richiesta {
 
     public void setFoto(List<Foto> foto) {
         this.foto = foto;
+    }
+
+    public void addFoto(Foto foto) {
+        this.getFoto().add(foto);
     }
 
 }
