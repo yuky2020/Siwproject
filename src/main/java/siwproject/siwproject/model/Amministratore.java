@@ -19,13 +19,15 @@ public class Amministratore {
 	private String username;
 	@Column(nullable = false, unique = true )
 	private String password;
-	
+    
+    @Column(nullable=false)
+    private String role;
+
 	public Amministratore(){}
-    public Amministratore(String username ,String password) {
+    public Amministratore(String username ,String password,String role) {
         this.username = username;
         this.password=password;
-
-    }
+        this.role=role;    }
 
     public boolean checkPwd(String actual){
         return password.equals(actual);
@@ -53,6 +55,14 @@ public class Amministratore {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
     
 }
