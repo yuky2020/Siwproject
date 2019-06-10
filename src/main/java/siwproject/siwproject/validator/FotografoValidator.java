@@ -23,9 +23,9 @@ public class FotografoValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
-        if (this.fotografoService.alreadyExists((Fotografo) target)) {
-            errors.reject("duplicato");
-        }
+        // if (this.fotografoService.alreadyExists((Fotografo) target)) {
+        // errors.reject("duplicato");
+        // }
     }
 
 }
