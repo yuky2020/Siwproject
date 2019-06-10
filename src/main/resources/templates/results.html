@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resource/css/main.css">
+    <link rel="stylesheet" href="/resources/css/navbar.css">
+    <title>s</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar"/>
+        <div class="col1">
+            <ul th:each="fotografo : ${results}">
+                <li th:text="${fotografo.nome}"/>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

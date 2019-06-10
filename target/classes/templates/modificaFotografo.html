@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Latest album</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/resources/css/main.css">
+  <link rel="stylesheet" href="/resources/css/navbar.css">
+
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar"/>
+        <div clas="row">
+            <form th:action="@{/modifica}" th:object="${fotografo}" method="GET">
+                Nome: <input type="text" name="newName"><br>
+                <!--- errori -->
+                <input type="submit" value="salva">
+            </form>
+        </div>
+    </div>
+</body>

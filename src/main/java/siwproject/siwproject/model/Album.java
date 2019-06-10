@@ -14,7 +14,7 @@ public class Album {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;
@@ -59,6 +59,16 @@ public class Album {
 
 	public void setFotografo(Fotografo fotografo) {
 		this.fotografo = fotografo;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Album that = (Album) obj;
+		return this.nome.equals(that.nome) && this.fotografo.equals(that.fotografo);
+	}
+
+	public void addFoto(Foto foto) {
+		this.foto.add(foto);
 	}
 
 }

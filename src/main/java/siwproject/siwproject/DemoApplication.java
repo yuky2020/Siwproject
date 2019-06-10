@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 
-
-
 @ServletComponentScan
 @SpringBootApplication
 public class DemoApplication {
@@ -19,12 +17,12 @@ public class DemoApplication {
 
 		SpringApplication.run(DemoApplication.class, args);
 	}
+
 	@Bean
 	public CommandLineRunner demo() {
-	return (args) -> {
-		log.info("Tutto Sembra Funzionare Correttamente");
+		return (args) -> {
+			log.info("Tutto Sembra Funzionare Correttamente");
 
-		
 		};
 	}
 

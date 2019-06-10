@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Fotografo;
+import siwproject.siwproject.repository.FotoRepository;
 import siwproject.siwproject.repository.FotografoRepository;
 
 @Service
@@ -38,4 +39,13 @@ public class FotografoService {
 		return this.fotografoRepository.findByNome(nomeFotografo);
 	}
 
+	@Transactional
+	public void cancellaFotografo(Fotografo fotografo) {
+		fotografoRepository.delete(fotografo);
+	}
+
+	/*
+	 * @Transactional public List<Fotografo> searchForName(String name) { return
+	 * fotografoRepository.find(name); }
+	 */
 }

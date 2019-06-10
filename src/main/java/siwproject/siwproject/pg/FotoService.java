@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Foto;
+import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.repository.FotoRepository;
 
 @Service
@@ -29,6 +30,13 @@ public class FotoService {
 
     @Transactional
     public void inserisci(Foto f) {
+        f.getFotografo().addFoto(f);
+        f.getAlbum().addFoto(f);
         this.fotoRepository.save(f);
+    }
+
+    @Transactional
+    public void aggiorna(Foto foto) {
+
     }
 }

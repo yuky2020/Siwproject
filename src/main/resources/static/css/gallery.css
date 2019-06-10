@@ -10,4 +10,14 @@
 .anteprima{
     float:left;
     margin: 3px;
+    border-radius:2px;
+}
+
+
+.anteprimafotografo{
+    float:left;
+    margin: 3px;
+    border-radius:2px;
+    width:120px;
+    height:80px;
 }

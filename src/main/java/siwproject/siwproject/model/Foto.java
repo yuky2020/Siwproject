@@ -1,5 +1,6 @@
 package siwproject.siwproject.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,10 @@ public class Foto {
 	private String url;
 	@ManyToOne
 	private Fotografo fotografo;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Album album;
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	private Richiesta richiesta;
 
 	public Foto() {
 	}
@@ -55,6 +58,14 @@ public class Foto {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Richiesta getRichiesta() {
+		return richiesta;
+	}
+
+	public void setRichiesta(Richiesta richiesta) {
+		this.richiesta = richiesta;
 	}
 
 }

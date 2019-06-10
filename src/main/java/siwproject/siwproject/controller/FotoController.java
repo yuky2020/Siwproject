@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.codec.multipart.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,7 +49,6 @@ public class FotoController {
         return "newFoto";
     }
 
-    // rimosso link qui perche veniva duplicato
     @RequestMapping(value = "/foto", method = RequestMethod.POST)
     public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
             @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo,
@@ -65,13 +63,8 @@ public class FotoController {
         fotoValidator.validate(foto, bindingResults);
 
         if (!bindingResults.hasErrors()) {
-            
             fotoService.inserisci(foto);
-            //fotografo.getFoto().add(foto);
-            //fotografoService.inserisci(fotografo);
-            // album.getFoto().add(foto);
-             //albumService.inserisci(album);
-            model.addAttribute("fotoSuccess", "Foto inserita con successo");
+
             return "paginaAdmin";
         } else {
             this.amazonClient.deleteFileFromS3Bucket(url);

@@ -21,9 +21,9 @@ public class Fotografo {
 	@Column(nullable = false)
 	private String nome;
 	private String picUrl;
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Foto> foto;
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany
 	private List<Album> album;
 
 	public Fotografo() {
@@ -79,5 +79,13 @@ public class Fotografo {
 	public boolean equals(Object obj) {
 		Fotografo that = (Fotografo) obj;
 		return this.nome.equals(that.nome);
+	}
+
+	public void addFoto(Foto foto) {
+		this.foto.add(foto);
+	}
+
+	public void addAlbum(Album album) {
+		this.album.add(album);
 	}
 }
