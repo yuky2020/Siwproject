@@ -1,5 +1,6 @@
 package siwproject.siwproject.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import siwproject.siwproject.pg.AlbumService;
 import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.validator.FotoValidator;
+import siwproject.siwproject.watermark.Watermark;
 
 @Controller
 public class FotoController {
@@ -53,7 +55,8 @@ public class FotoController {
     public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
             @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo,
             @RequestParam("nomeAlbum") String nomeAlbum) {
-
+        Watermark a = new Watermark();
+        a.addTextWatermark("Silph", (File) file, (File)file);
         String url = "https://s3.eu-west-3" + this.amazonClient.uploadFile(file).substring(20);
         foto.setUrl(url);
         Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
