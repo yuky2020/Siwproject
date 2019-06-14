@@ -23,27 +23,40 @@
                     <tr>
                         <td>Nome: </td>
                         <td th:text="${richiesta.dettagli.nome}"></td>
+                        <td>
+                            <a th:href="@{'/deleteRichiesta' + '/' + ${richiesta.id}}">
+                                <input type="submit" class="button" value="Prendi in carico la richiesta">
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <td>Cognome: </td>
-                        <td th:text="${richiesta.dettagli.cognome}"></td> 
-                    </tr>                  
+                        <td th:text="${richiesta.dettagli.cognome}"></td>
+                    </tr>
                     <tr>
                         <td>Numero di telefono: </td>
-                        <td th:text="${richiesta.dettagli.cellulare}"></td>    
+                        <td th:text="${richiesta.dettagli.cellulare}"></td>
                     </tr>
                     <tr>
                         <td>Codice prepagata: </td>
-                        <td th:text="${richiesta.dettagli.codicePay}"></td>    
+                        <td th:text="${richiesta.dettagli.codicePay}"></td>
                     </tr>
                 </table>
                 <br>
-                <a th:href="@{'/deleteRichiesta' + '/' + ${richiesta.id}}">
-                        <input type="submit" class="button" value="Prendi in carico la richiesta">
-                </a>
-
             </div>
         </div>
+        <div class="row">
+            <div class="col1">
+
+
+                <figure style="float:left;margin:3px;" th:each="foto : ${richiesta.foto}" class="anteprima"
+                    itemprop="associatedMedia" itemscope itemtype="http://schema.org.ImageObject">
+                    <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
+                </figure>
+            </div>
+        </div>
+        <br>
+
     </div>
 </body>
 

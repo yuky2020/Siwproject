@@ -20,13 +20,12 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
-                <figure th:each="f : ${fotos}" class="anteprima" itemprop="associatedMedia" itemscope
-                    itemtype="http://schema.org.ImageObject">
-                    <a th:href="${f.url}" itemprop="contentUrl" data-size="1024x1024">
-                        <img th:src="${f.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
+            
+                <img src="${foto.url}" class="anteprima" th:each="fotografo : ${richiesta.foto}">
+                    <a th:href="${foto.url}">
+                        <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
                     </a>
-                </figure>
+                </img>
             </div>
         </div>
     </div>
