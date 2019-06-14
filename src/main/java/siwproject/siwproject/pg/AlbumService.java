@@ -26,6 +26,7 @@ public class AlbumService {
 
     @Transactional
     public void inserisci(Album a) {
+        a.getFotografo().addAlbum(a);
         this.albumRepository.save(a);
     }
 
@@ -38,4 +39,5 @@ public class AlbumService {
     public boolean doesExists(String nomeAlbum) {
         return this.albumRepository.existsByNome(nomeAlbum);
     }
+
 }

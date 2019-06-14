@@ -1,6 +1,7 @@
 package siwproject.siwproject.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,12 +11,11 @@ import javax.persistence.OneToOne;
 public class Dettagli {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String nome;
     private String cognome;
     private String cellulare;
     private String codicePay;
-    @OneToOne
-    private Richiesta richiesta;
 
     public Dettagli() {
     }

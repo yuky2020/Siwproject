@@ -13,15 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
-import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.validator.FotografoValidator;
@@ -43,7 +40,7 @@ public class FotografoController extends HttpServlet {
 		return "newFotografo";
 	}
 
-	@RequestMapping(value = "/fotografo", method = RequestMethod.POST)
+	@PostMapping("/fotografo")
 	public String inserisciFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo, Model model,
 			BindingResult bindingResult, @RequestPart("pic") MultipartFile pic) {
 		this.fotografoValidator.validate(fotografo, bindingResult);
@@ -62,14 +59,14 @@ public class FotografoController extends HttpServlet {
 
 	}
 
-	@RequestMapping(value = { "/mostraFotografi" }, method = RequestMethod.GET)
+	@GetMapping("/mostraFotografi")
 	public String viewFotografi(Model model) {
 		List<Fotografo> fotografi = fotografoService.tutti();
 		model.addAttribute("fotografi", fotografi);
 		return "mostraFotografi";
 	}
 
-	@RequestMapping(value = "/paginaFotografo/{id}", method = RequestMethod.GET)
+	@GetMapping("/paginaFotografo/{id}")
 	public String getPaginaFotografo(Model model, @PathVariable("id") Long id) {
 
 		model.addAttribute("fotografo", fotografoService.fotografoPerId(id));

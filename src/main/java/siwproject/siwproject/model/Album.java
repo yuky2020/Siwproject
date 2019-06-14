@@ -14,12 +14,18 @@ public class Album {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany
 	private List<Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;
 
 	public Album() {
+	}
+
+	public Album(String nomeAlbum, Fotografo fotografo) {
+		this.nome = nomeAlbum;
+		this.fotografo = fotografo;
+		this.foto = new ArrayList<Foto>();
 	}
 
 	public Album(String nome) {

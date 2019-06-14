@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.HashTag;
 import siwproject.siwproject.repository.HashTagRepository;
 
@@ -31,13 +32,24 @@ public class HashTagService {
         return hashTagRepository.existsByNome(nome);
     }
 
-    /*
-     * public static List<HashTag> parseHashTag(String hashTags) { List<HashTag>
-     * toReturn = new ArrayList<HashTag>(); Scanner sc = new
-     * Scanner(hashTags).useDelimiter("\\s*#\\s*"); while (sc.hasNext()) { String
-     * nome = sc.next(); if (hashTagService.existsByNome(nome)) {
-     * toReturn.add(hashTagService.hashTagPerNome(nome)); } else { toReturn.add(new
-     * HashTag(nome)); } } sc.close(); return toReturn; }
-     */
+    public List<HashTag> parseHashTag(String hashTagString) {
+        List<HashTag> hashTags = new ArrayList<HashTag>();
+        Scanner sc = new Scanner(hashTagString);
+        sc.useDelimiter("\\s*#\\s*");
+        while (sc.hasNext()) {
+            String tag = sc.next();
+            if (!this.existsByNome(tag)) {
+                this.inserisci(new HashTag(tag));
+            }
+            hashTags.add(this.hashTagPerNome(tag));
+        }
+        sc.close();
+        return hashTags;
+    }
 
+    public void linkTags(Foto foto, List<HashTag> HashTags) {
+        for (HashTag hashTag : HashTags) {
+            hashTag.addFoto(foto);
+        }
+    }
 }

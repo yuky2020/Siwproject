@@ -33,7 +33,7 @@
             <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
                 <figure th:each="foto : ${fotografo.foto}" class="anteprimafotografo" itemprop="associatedMedia" itemscope
                     itemtype="http://schema.org.ImageObject">
-                    <a th:href="${foto.url}" itemprop="contentUrl" data-size="1024x1024">
+                       <a th:href="@{'/paginaFoto' + '/' + ${foto.id}}" itemprop="contentUrl" data-size="1024x1024"> 
                         <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226"
                             height="240" />
                     </a>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div th:insert="fragments/galleryScript :: galleryScript" />
+    
 
 </body>
 

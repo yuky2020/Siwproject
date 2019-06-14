@@ -5,30 +5,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.annotation.Generated;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
+import siwproject.siwproject.form.FotoForm;
+import siwproject.siwproject.form.HashTagForm;
 import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.model.HashTag;
 import siwproject.siwproject.pg.AlbumService;
+
 import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.pg.HashTagService;
 import siwproject.siwproject.validator.FotoValidator;
-import siwproject.siwproject.watermark.Watermark;
 
 @Controller
 public class FotoController {
@@ -50,45 +53,41 @@ public class FotoController {
         this.amazonClient = amazonClient;
     }
 
-    @RequestMapping("/aggiungiFoto")
+    @GetMapping("/aggiungiFoto")
     public String aggiungiFoto(Model model) {
-        Foto foto = new Foto();
-        model.addAttribute("foto", foto);
+        model.addAttribute("form", new FotoForm());
+        model.addAttribute("fotografi", fotografoService.tutti());
         return "newFoto";
     }
 
-    @RequestMapping(value = "/foto", method = RequestMethod.POST)
-    public String inserisciFoto(@Valid @ModelAttribute("foto") Foto foto, Model model, BindingResult bindingResults,
-            @RequestPart(value = "file") MultipartFile file, @RequestParam("nomeFotografo") String nomeFotografo,
-            @RequestParam("nomeAlbum") String nomeAlbum, @RequestParam("hashTagString") String hashTagString) {
-        String url = "https://s3.eu-west-3" + this.amazonClient.uploadFile(file).substring(20);
-        foto.setUrl(url);
-        Fotografo fotografo = fotografoService.fotografoPerNome(nomeFotografo);
-        foto.setFotografo(fotografo);
-        Album album = albumService.albumPerNome(nomeAlbum);
-        foto.setAlbum(album);
-        fotoValidator.validate(foto, bindingResults);
-
-        if (!bindingResults.hasErrors()) {
-            List<HashTag> hashTagList = parseHashTag(hashTagString);
-            linkTags(foto, hashTagList);
-            fotoService.inserisci(foto);
+    @PostMapping("/foto")
+    public String inserisciFoto(@Valid @ModelAttribute("form") FotoForm form, Model model, BindingResult errors) {
+        fotoValidator.validate(form, errors);
+        if (!errors.hasErrors()) {
+            Fotografo fotografo = fotografoService.fotografoPerNome(form.getNomeFotografo());
+            Album album = albumService.albumPerNome(form.getNomeAlbum());
+            List<HashTag> hashTags = parseHashTag(form.getHashTagList());
+            for (MultipartFile file : form.getFiles()) {
+                String url = "https://s3.eu-west-3" + this.amazonClient.uploadFile(file).substring(20);
+                Foto foto = new Foto(url, fotografo, album);
+                linkTags(foto, hashTags);
+                fotoService.inserisci(foto);
+            }
             return "paginaAdmin";
         } else {
-            this.amazonClient.deleteFileFromS3Bucket(url);
             return "newFoto";
         }
 
     }
 
-    @RequestMapping(value = { "/mostraFoto" }, method = RequestMethod.GET)
+    @GetMapping("/mostraFoto")
     public String viewFoto(Model model) {
-        List<Foto> foto = fotoService.tutte();
+        List<Foto> foto = fotoService.ultime30();
         model.addAttribute("fotos", foto);
         return "mostraFoto";
     }
 
-    private List<HashTag> parseHashTag(String hashTagString) {
+    public List<HashTag> parseHashTag(String hashTagString) {
         List<HashTag> hashTags = new ArrayList<HashTag>();
         Scanner sc = new Scanner(hashTagString);
         sc.useDelimiter("\\s*#\\s*");
@@ -103,9 +102,32 @@ public class FotoController {
         return hashTags;
     }
 
-    private void linkTags(Foto foto, List<HashTag> HashTags) {
+    @GetMapping("/paginaFoto/{id}")
+    public String paginaFoto(Model model, @PathVariable("id") long id) {
+        Foto foto = fotoService.fotoPerId(id);
+        model.addAttribute("foto", foto);
+        return "paginaFoto";
+    }
+
+    public void linkTags(Foto foto, List<HashTag> HashTags) {
         for (HashTag hashTag : HashTags) {
             hashTag.addFoto(foto);
         }
+    }
+
+    @GetMapping("/aggiungiAlCarrello/{id}")
+    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @ModelAttribute("id") long id) {
+
+        Foto foto = fotoService.fotoPerId(id);
+        List<Foto> carrello;
+        if (session.getAttribute("carrello") != null) {
+            carrello = (List<Foto>) session.getAttribute("carrello");
+        } else {
+            carrello = new ArrayList<Foto>();
+        }
+        carrello.add(foto);
+        model.addAttribute("foto", foto);
+        session.setAttribute("carrello", carrello);
+        return "/paginaFoto";
     }
 }

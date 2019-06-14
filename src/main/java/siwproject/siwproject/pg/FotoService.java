@@ -36,6 +36,11 @@ public class FotoService {
     }
 
     @Transactional
+    public List<Foto> ultime30() {
+        return fotoRepository.last30Foto();
+    }
+
+    @Transactional
     public void aggiorna(Foto foto) {
 
     }

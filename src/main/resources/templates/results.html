@@ -18,18 +18,34 @@
 
 <body>
     <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar"/>
-        <div th:if="${hashTag} != null" class="row">
+        <div th:insert="fragments/navbar :: navbar" />
+        <div th:if="${hashTag}" class="row">
+            <h1> Risultati foto per <span th:text="${toSearch}"></span> </h1>
             <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
                 <figure th:each="foto : ${hashTag.foto}" class="anteprima" itemprop="associatedMedia" itemscope
                     itemtype="http://schema.org.ImageObject">
                     <a th:href="${foto.url}" itemprop="contentUrl" data-size="1024x1024">
-                        <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
+                        <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226"
+                            height="240" />
+                    </a>
+                </figure>
+            </div>
+        </div>
+        <div th:if="${fotografi}" class="row">
+            <div class="col1">
+                <h1> Risultati fotografo per <span th:text="${toSearch}"></span></h1><br>
+                <figure th:each="fotografo : ${fotografi}" itemprop="associatedMedia" itemscope
+                    itemtype="http://schema.org.ImageObject">
+                    <a th:href="@{'/paginaFotografo' + '/' + ${fotografo.id}}" itemprop="contentUrl"
+                        data-size="1024x1024">
+                        <img th:src="${fotografo.picUrl}" class="profilepic" itemprop="thumbnail" alt="Image description"
+                             />
                     </a>
                 </figure>
             </div>
         </div>
     </div>
-    <div th:insert="fragments/galleryScript :: galleryScript"/>
+    <div th:insert="fragments/galleryScript :: galleryScript" />
 </body>
+
 </html>

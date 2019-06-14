@@ -21,11 +21,11 @@
 <body>
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
-        <div class="row">
+        <div class="col1">
             <form th:action="@{/fotografo}" method="POST" th:object="${fotografo}" enctype="multipart/form-data">
                 Nome: <input type="text" th:field="*{nome}" name="nome"><br>
-                <span th:if="${#fields.hasErrors('nome')}" th:bindingResults="*{nome}"><br></span>
-                ProfilePic: <input type="file" name="pic"><br>
+                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"><br></span>
+                <br>ProfilePic: <input type="file" name="pic"><br>
                 <input type="submit" value="Inserisci"><br>
             </form>
         </div>

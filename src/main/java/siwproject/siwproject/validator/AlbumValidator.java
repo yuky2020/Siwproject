@@ -5,6 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import siwproject.siwproject.form.AlbumForm;
 import siwproject.siwproject.model.Album;
 
 @Component
@@ -12,13 +13,13 @@ public class AlbumValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Album.class.equals(clazz);
+        return AlbumForm.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fotografo", "required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomeFotografo", "required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomeAlbum", "required");
     }
 
 }

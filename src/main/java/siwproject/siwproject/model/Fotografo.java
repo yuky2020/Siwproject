@@ -1,5 +1,6 @@
 package siwproject.siwproject.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,6 +32,7 @@ public class Fotografo {
 
 	public Fotografo(String nome) {
 		this.nome = nome;
+		this.foto = new ArrayList<Foto>();
 	}
 
 	/* METODI GETTER E SETTER */

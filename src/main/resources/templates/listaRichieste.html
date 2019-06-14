@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <title>Richieste pendenti</title>
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" href="/resources/css/main.css">
+   <link rel="stylesheet" href="/resources/css/navbar.css">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar"></div>
+        <div class="row">
+            <div class="col1">
+                <ul th:each="richiesta : ${richieste}">
+                   <!---<a th:href="@{'/paginaRichiesta' + '/' + ${richiesta.id}">--->
+                        <table class="box richiesta">
+                            <tr>
+                                <td>Nome: </td>
+                                <td th:text="${richiesta.dettagli.nome}"></td>
+                            </tr>
+                            <tr>
+                                <td>Cognome: </td>
+                                <td th:text="${richiesta.dettagli.cognome}"></td>
+                            </tr>
+                            <tr>
+                                <td>Data e ora di invio: </td>
+                                <td th:text="${richiesta.creazioneString}"></td>
+                            </tr>
+                            <tr>
+                                <td><a th:href="@{'/paginaRichiesta/' + '/' + ${richiesta.id}}">Visualizza richiesta</a></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

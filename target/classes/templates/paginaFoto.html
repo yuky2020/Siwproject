@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>HomePage</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/navbar.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar"></div>
+        <div class="row">
+            <div class="col1">
+                <div width="65%">
+                    <img th:src="${foto.url}" /><br>
+                </div>
+                <div width="25%">
+                    Autore:<span th:text="${foto.fotografo.nome}"></span>
+                    Album:<span th:text="${foto.album.nome}"></span>
+
+
+                    <a th:href="@{'/aggiungiAlCarrello' + '/' + ${foto.id}}">
+                        <input class="button" type="button" value="Aggiungi al carrello">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

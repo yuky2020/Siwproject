@@ -9,5 +9,7 @@ import siwproject.siwproject.model.Amministratore;
 public interface AmministratoreRepository extends CrudRepository<Amministratore, Long> {
     Amministratore findByUsername(String username);
 
+    boolean existsByUsername(String username);
+
     List<Amministratore> findAll();
 }

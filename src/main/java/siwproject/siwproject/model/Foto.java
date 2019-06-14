@@ -1,5 +1,6 @@
 package siwproject.siwproject.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +23,17 @@ public class Foto {
 	private Fotografo fotografo;
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Album album;
+	private LocalDateTime creazione;
 
 	public Foto() {
 
+	}
+
+	public Foto(String url, Fotografo fotografo, Album album) {
+		this.url = url;
+		this.fotografo = fotografo;
+		this.album = album;
+		this.creazione = LocalDateTime.now();
 	}
 
 	public Foto(String url) {
@@ -63,4 +72,13 @@ public class Foto {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public LocalDateTime getCreazione() {
+		return creazione;
+	}
+
+	public void setCreazione(LocalDateTime creazione) {
+		this.creazione = creazione;
+	}
+
 }

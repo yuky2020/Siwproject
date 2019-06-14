@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Carrello</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/resources/css/main.css">
+  <link rel="stylesheet" href="/resources/css/navbar.css">
+  <link rel="stylesheet" href="/resources/css/gallery.css">
+  <link rel="stylesheet" href="/resources/jscc/photoswipe.css">
+  <link rel="stylesheet" href="/resources/jscc/default-skin/default-skin.css">
+  <script src="/resources/jscc/photoswipe.min.js"></script>
+  <script src="/resources/jscc/photoswipe-ui-default.min.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <div class="row" th:if="${carrello}">
+      <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
+        <figure th:each="f : ${carrello}" class="anteprima" itemprop="associatedMedia" itemscope
+          itemtype="http://schema.org.ImageObject">
+          
+            <img th:src="${f.url}" itemprop="thumbnail" alt="Image description" widht="100" height="70" />
+
+        </figure>
+      </div>
+    </div>
+    <div class="row">
+
+
+      <a th:href="@{/aggiungiDettagli}">
+        <input class="button" type="button" value="Conferma selezione">
+      </a>
+
+    </div>
+  </div>
+</body>
+
+</html>

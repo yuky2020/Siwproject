@@ -17,9 +17,13 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <form th:action="@{/album}" th:object="${album}" method="POST">
-                Fotografo: <input type="text" name="nomeFotografo"><br>
-                Nome: <input type="text" th:field="*{nome}"><br>
+            <form th:action="@{/album}" th:object="${form}" method="POST" enctype="multipart/form-data">
+                Fotografo: <select th:field="*{nomeFotografo}">
+                    <option th:each="fotografo : ${fotografi}" th:text="${fotografo.nome}" th:value="${fotografo.nome}"/>
+                </select>
+                    Nome: <input type="text" th:field="*{nomeAlbum}"/><br>
+                    <input type="file" multiple="multiple" th:field="*{files}">
+                    <input type="text" th:field="*{hashTagList}">
                 <input type="submit" value="Inserisci">
             </form>
         </div>

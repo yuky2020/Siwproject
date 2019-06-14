@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/navbar.css">
+    <title> Conosole </title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar"/>
+        <div class="col1">
+            <form th:object="${form}" th:action="@{/iter}" method="POST">
+                <input th:field="*{hashTagList}">
+                <input type="submit" th:value="${lblsubmit}">
+            </form>
+        </div>
+    </div>
+               
+</body>
+</html>

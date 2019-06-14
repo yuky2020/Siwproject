@@ -10,8 +10,6 @@ body {
   border:none;
   color:black !important;
   background: white;
-  size: 20px;
-  margin-top:5%;
   margin-bottom: 5%;
 }
 
@@ -35,5 +33,20 @@ body {
 .profilepic{
   width:20%;
   height:20%;
-  border-radius:19px;
+  border-radius:180px;
+  margin:3px;
 }
+
+.costumis{
+  background:transparent;
+  float:left;
+  height:5%;
+  width:5%;
+}
+
+.btnimg{
+  width:5%;
+  height:5%;
+  position: relative;
+}
+

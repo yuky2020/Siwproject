@@ -20,11 +20,13 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar"/>
         <div class="row">
-            <form th:action="@{/foto}" th:object="${foto}" method="POST" enctype="multipart/form-data">
-                <input type="file" name="file">
-                <input type="text" name="nomeFotografo" placeholder="Fotografo">
-                <input type="text" name="nomeAlbum" placeholder="Album">
-                <input type="text" name="hashTagString" width="300px" height="200px">
+            <form th:action="@{/foto}" th:object="${form}" method="POST" enctype="multipart/form-data">
+                <input type="file" th:field="*{files}" multiple="multiple"> 
+                <select th:field="*{nomeFotografo}">
+                    <option th:each="fotografo : ${fotografi}" th:text="${fotografo.nome}" th:value="${fotografo.nome}"/>
+                </select>
+                <input type="text" th:field="*{nomeAlbum}" placeholder="Album">
+                <input type="text" th:field="*{hashTagList}" placeholder="#hashtag1#hastag2#...">
                 <input type="submit" value="conferma">
             </form>
         </div>

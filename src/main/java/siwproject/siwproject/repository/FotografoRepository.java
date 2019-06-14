@@ -17,6 +17,9 @@ public interface FotografoRepository extends CrudRepository<Fotografo, Long> {
 
     List<Fotografo> findAll();
 
-    // @Query("SELECT f FROM Fotografo f WHERE LOWER(f.nome) = LOWER(:nome)")
-    // public List<Fotografo> find(@Param("lastName") String nome);
+    @Query(value = "SELECT f.nome FROM Fotografo f", nativeQuery = true)
+    public List<String> nomiFotografi();
+
+    @Query(value = "SELECT * FROM fotografo  WHERE LOWER(nome) LIKE CONCAT(:search,'%')", nativeQuery = true)
+    public List<Fotografo> fotografiPerNome(@Param("search") String search);
 }

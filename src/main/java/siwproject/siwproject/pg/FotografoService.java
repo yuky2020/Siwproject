@@ -44,8 +44,13 @@ public class FotografoService {
 		fotografoRepository.delete(fotografo);
 	}
 
-	/*
-	 * @Transactional public List<Fotografo> searchForName(String name) { return
-	 * fotografoRepository.find(name); }
-	 */
+	@Transactional
+	public List<String> nomiFotografi() {
+		return fotografoRepository.nomiFotografi();
+	}
+
+	@Transactional
+	public List<Fotografo> fotografiPerNome(String search) {
+		return fotografoRepository.fotografiPerNome(search);
+	}
 }

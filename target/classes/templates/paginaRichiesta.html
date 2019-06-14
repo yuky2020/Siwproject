@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>HomePage</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/navbar.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar"></div>
+        <div class="row">
+            <div class="col1">
+                <table>
+                    <tr>
+                        <td>Nome: </td>
+                        <td th:text="${richiesta.dettagli.nome}"></td>
+                    </tr>
+                    <tr>
+                        <td>Cognome: </td>
+                        <td th:text="${richiesta.dettagli.cognome}"></td> 
+                    </tr>                  
+                    <tr>
+                        <td>Numero di telefono: </td>
+                        <td th:text="${richiesta.dettagli.cellulare}"></td>    
+                    </tr>
+                    <tr>
+                        <td>Codice prepagata: </td>
+                        <td th:text="${richiesta.dettagli.codicePay}"></td>    
+                    </tr>
+                </table>
+                <br>
+                <a th:href="@{'/deleteRichiesta' + '/' + ${richiesta.id}}">
+                        <input type="submit" class="button" value="Prendi in carico la richiesta">
+                </a>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
