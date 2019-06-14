@@ -16,22 +16,41 @@
   <link rel="stylesheet" href="/resources/css/navbar.css">
 </head>
 
-
 <body>
-  <div class="container-fluid">
-    
-    <div class="row">
-      <div class="container login-container">
 
-        <div class="col-md-6 login-come amministratore ">
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar" />
+        <div class="row">
 
-          <form action="loginValidator" method="POST" enctype="text/plain">
-            <input type="submit" value=" aaa">
-          </form>
-        </div>
-      </div>
-    </div>
+
+ <div class="col-md-6 login-come amministratore ">
+          <div class="col-lg-5 col-sm-12 my-auto">
+              <h1 >Accesso Come Amministrare</h1>
+              <form action="/login" method="POST">
+                  <div class="form-group">
+                      <label for="emailInput">Email</label>
+                      <br />
+                      <input type="text" class="form-control" placeholder="username" name="username" />
+                  </div>
+                  <div class="form-group">
+                      <label for="passwordInput">Password</label>
+                      <br />
+                      <input type="password" class="form-control" placeholder="Password" name="password" />
+                  </div>
+                  <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="rememberMeCheckbox">
+                      <label class="form-check-label" for="rememberMeCheckbox">Remember me</label>
+                  </div>
+                  <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+                  <div class="g-recaptcha" data-theme="light" data-size="normal"
+                      data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                  <br />
+                  <input type="submit" class="form-control btn-primary" value="Log In" />
+              </form>
+              <br />
+          </div>
   </div>
+  <!-- reCaptcha v2-->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
-
 </html>

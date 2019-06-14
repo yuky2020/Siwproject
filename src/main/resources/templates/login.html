@@ -16,14 +16,15 @@
   <link rel="stylesheet" href="/resources/css/navbar.css">
 </head>
 
-
 <body>
   <div class="container-fluid">
     
     <div class="row">
       <div class="container login-container">
 
-        <div class="col-md-6 login-come amministratore ">
+    <div class="container-fluid">
+        <div th:insert="fragments/navbar :: navbar" />
+        <div class="row">
 
           <form action="loginValidator" method="POST" enctype="text/plain">
             <input type="submit" value=" aaa">
@@ -32,6 +33,7 @@
       </div>
     </div>
   </div>
+  <!-- reCaptcha v2-->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
-
 </html>
