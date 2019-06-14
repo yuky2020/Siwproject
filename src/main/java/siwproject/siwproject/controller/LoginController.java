@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import siwproject.siwproject.model.Amministratore;
-import siwproject.siwproject.pg.AmministratoreServices;
+import siwproject.siwproject.security.CustomUserDetailsService;;
 
 @Controller
 public class LoginController {
   @Autowired
-  AmministratoreServices amministratoreServices;
+  CustomUserDetailsService amministratoreServices;
 
   @GetMapping("/login")
   public String paginaLogin(Model model) {
@@ -22,16 +22,16 @@ public class LoginController {
     return "login";
   }
 
-  @GetMapping("/loginValidator")
+ /* @GetMapping("/loginValidator")
   String acessoAdmin(@Valid @RequestParam String username, @RequestParam("pwd") String pwd, Model model) {
 
-    Amministratore a = amministratoreServices.amministratorePerUsername(username.trim());
+    Amministratore a = amministratoreServices.loadUserByUsername(username.trim());
     if (a != null && a.checkPwd(pwd.trim())) {
       model.addAttribute("amministratore", a);
       return "paginaAdmin";
     } else
-      return "login";
-  }
+      return "login"; }*/
+  
 
   @GetMapping("/setPassword")
   public String kkk() {

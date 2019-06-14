@@ -1,4 +1,4 @@
-package siwproject.siwproject.pg;
+/*package siwproject.siwproject.pg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +49,8 @@ public class AmministratoreServices implements UserDetailsService {
 	   
 	  
 		 //  ROLE_USER, ROLE_ADMIN,..
-		   GrantedAuthority grantedAuthority = new SimpleGrantedAuthority (a.getRole());
-		   List grantList = new ArrayList ();
+		   GrantedAuthority grantedAuthority = new SimpleGrantedAuthority (a.getRoles());
+		   
 		   grantList.add(grantedAuthority); 
 	   
 		   
@@ -58,7 +58,7 @@ public class AmministratoreServices implements UserDetailsService {
 	   UserDetails userd = (UserDetails) new User( a.getUsername(), a.getPassword(),grantList);
 			return userd;
 	   }
-   }
+   } */
 
 
 

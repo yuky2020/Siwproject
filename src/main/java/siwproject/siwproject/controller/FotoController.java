@@ -28,7 +28,6 @@ import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.FotografoService;
 import siwproject.siwproject.pg.HashTagService;
 import siwproject.siwproject.validator.FotoValidator;
-import siwproject.siwproject.watermark.Watermark;
 
 @Controller
 public class FotoController {
