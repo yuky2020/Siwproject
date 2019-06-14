@@ -33,11 +33,14 @@ public class Amministratore {
 
     
 
-	public Amministratore(){}
-    public Amministratore(String username ,String password,String role) {
+	public Amministratore(){
+        this.roles = new HashSet<Role>();
+    }
+    public Amministratore(String username ,String password,Role role) {
         this.username = username;
         this.password=password;
-        this.roles = new HashSet<Role>();   }
+        this.roles = new HashSet<Role>();
+        roles.add(role)  ; }
 
     public boolean checkPwd(String actual){
         return password.equals(actual);
@@ -82,6 +85,10 @@ public class Amministratore {
      */
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role){
+        this.roles.add(role);
     }
 
 }
