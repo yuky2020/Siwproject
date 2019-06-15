@@ -91,7 +91,7 @@ public class FotografoController extends HttpServlet {
 	public String modifica(Model model, @ModelAttribute("fotografo") Fotografo fotografo,
 			@RequestParam("newName") String newName, @RequestPart("newPic") MultipartFile newPic) {
 		if (!newName.equals("")) {
-			fotografo.setNome(newName);
+			fotografoService.aggiorna(fotografo,newName);
 		}
 		try {
 			String newUrl = "https://s3.eu-west-3" + amazonClient.uploadFile(newPic).substring(20);
@@ -101,7 +101,7 @@ public class FotografoController extends HttpServlet {
 
 		}
 
-		fotografoService.aggiorna(fotografo);
+		
 		return "listaFotografi";
 	}
 

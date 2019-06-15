@@ -1,11 +1,15 @@
 package siwproject.siwproject.pg;
 
 import java.util.List;
+
+import javax.persistence.Lob;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Album;
+import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.repository.AlbumRepository;
 import siwproject.siwproject.repository.FotoRepository;
@@ -72,8 +76,14 @@ public class FotografoService {
 	}
 
 	@Transactional
-	public void aggiorna(Fotografo fotografo) {
-		System.out.println(fotografo.getNome());
-		fotografoRepository.aggiorna(fotografo.getId(), fotografo.getNome());
+	public void aggiorna(Fotografo fotografo,String name) {
+		fotografoRepository.aggiorna(fotografo.getId(),name);
+	
+
+		
+
+
+		
+
 	}
 }
