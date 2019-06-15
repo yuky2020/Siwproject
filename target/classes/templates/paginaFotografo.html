@@ -26,10 +26,10 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <h1 th:text="${fotografo.nome}" /><br>
             <img class="profilepic" th:src="${fotografo.picUrl}" style="width:10%;
             height:10%;
             border-radius:300px;">
+             <h1 th:text="${fotografo.nome}" /><br>
             <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
                 <figure th:each="foto : ${fotografo.foto}" class="anteprimafotografo" itemprop="associatedMedia" itemscope
                     itemtype="http://schema.org.ImageObject">

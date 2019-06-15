@@ -1,8 +1,5 @@
 package siwproject.siwproject.form;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class HashTagForm {
     private String hashTagList;
 

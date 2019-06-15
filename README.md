@@ -1,1 +1,1 @@
-Siwproject
+Progetto per il corso di Sistemi informativi su web

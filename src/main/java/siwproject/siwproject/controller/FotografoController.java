@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,16 +42,13 @@ public class FotografoController extends HttpServlet {
 
 	@PostMapping("/fotografo")
 	public String inserisciFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo, Model model,
-			BindingResult bindingResult, @RequestPart("pic") MultipartFile pic) {
-		this.fotografoValidator.validate(fotografo, bindingResult);
-
-		if (!bindingResult.hasErrors()) {
+			BindingResult errors, @RequestPart("pic") MultipartFile pic) {
+		this.fotografoValidator.validate(fotografo, errors);
+		if (!errors.hasErrors()) {
 			if (!pic.getOriginalFilename().equals("")) {
 				fotografo.setPicUrl("https://s3.eu-west-3" + amazonClient.uploadFile(pic).substring(20));
 			}
 			fotografoService.inserisci(fotografo);
-			model.addAttribute("fotografoSuccess", fotografo.getNome());
-
 			return "paginaAdmin";
 		} else {
 			return "newFotografo";
@@ -68,15 +65,14 @@ public class FotografoController extends HttpServlet {
 
 	@GetMapping("/paginaFotografo/{id}")
 	public String getPaginaFotografo(Model model, @PathVariable("id") Long id) {
-
 		model.addAttribute("fotografo", fotografoService.fotografoPerId(id));
 		return "paginaFotografo";
 	}
 
 	@GetMapping("cancellaFotografo/{id}")
 	public String modifica(Model model, @ModelAttribute("id") Long id) {
-		fotografoService.cancellaFotografo(fotografoService.fotografoPerId(id));
-		return "listaFotografi";
+		fotografoService.cancella(id);
+		return "paginaAdmin";
 	}
 
 	@GetMapping("/listaFotografi")
@@ -84,4 +80,29 @@ public class FotografoController extends HttpServlet {
 		model.addAttribute("fotografi", fotografoService.tutti());
 		return "listaFotografi";
 	}
+
+	@GetMapping("/modificaFotografo/{id}")
+	public String modificaFotografo(Model model, @PathVariable("id") long id) {
+		model.addAttribute("fotografo", fotografoService.fotografoPerId(id));
+		return "modificaFotografo";
+	}
+
+	@PostMapping("/modifica")
+	public String modifica(Model model, @ModelAttribute("fotografo") Fotografo fotografo,
+			@RequestParam("newName") String newName, @RequestPart("newPic") MultipartFile newPic) {
+		if (!newName.equals("")) {
+			fotografo.setNome(newName);
+		}
+		try {
+			String newUrl = "https://s3.eu-west-3" + amazonClient.uploadFile(newPic).substring(20);
+			fotografo.setPicUrl(newUrl);
+
+		} catch (Exception e) {
+
+		}
+
+		fotografoService.aggiorna(fotografo);
+		return "listaFotografi";
+	}
+
 }

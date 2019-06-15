@@ -15,10 +15,14 @@
   <div class="container-fluid">
     <div th:insert="fragments/navbar :: navbar" />
     <div class="row">
-      <ul th:each="fotografo : ${fotografi}">
-        <li> <a th:href="@{'/paginaFotografo' + '/' + ${fotografo.id}}" th:text="${fotografo.nome}" /></li> <br>
-      </ul>
+      <div clas="col1">
+        <a class="list" th:each="fotografo: ${fotografi}" th:href="@{'/paginaFotografo' + '/' + ${fotografo.id}}">
+          <img class="profilepiclist" th:src="${fotografo.picUrl}">
+        </a>
+      </div>
     </div>
+
   </div>
 </body>
+
 </html>

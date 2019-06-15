@@ -40,4 +40,8 @@ public class AlbumService {
         return this.albumRepository.existsByNome(nomeAlbum);
     }
 
+    @Transactional
+    public List<String> nomiAlbum(long fotografoId) {
+        return albumRepository.nomiAlbum(fotografoId);
+    }
 }

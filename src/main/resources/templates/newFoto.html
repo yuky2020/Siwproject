@@ -18,16 +18,36 @@
 
 <body>
     <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar"/>
+        <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
             <form th:action="@{/foto}" th:object="${form}" method="POST" enctype="multipart/form-data">
-                <input type="file" th:field="*{files}" multiple="multiple"> 
-                <select th:field="*{nomeFotografo}">
-                    <option th:each="fotografo : ${fotografi}" th:text="${fotografo.nome}" th:value="${fotografo.nome}"/>
-                </select>
-                <input type="text" th:field="*{nomeAlbum}" placeholder="Album">
-                <input type="text" th:field="*{hashTagList}" placeholder="#hashtag1#hastag2#...">
-                <input type="submit" value="conferma">
+                <table>
+                    <tr>
+
+                        <td>Nome fotografo: </td>
+                        <td> <input type="text" th:field="*{nomeFotografo}"/> </td>
+                    </tr>
+                    <tr>
+                        <td>Nome album: </td>
+                        <td>
+                                <input th:field="*{nomeAlbum}" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>File da caricare: </td>
+                        <td><input type="file" multiple="multiple" th:field="*{files}"></td>
+                    </tr>
+                    <tr>
+                        <td>Hashtag:</td>
+                        <td><input type="text" th:field="*{hashTagList}"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Inserisci foto"></td>
+                        <td>*Questi hashtag sono comuni per tutte le foto che stai caricando,
+                            in seguito potrai aggiungerne di nuovi separatamente
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
     </div>

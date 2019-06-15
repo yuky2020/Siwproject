@@ -1,5 +1,6 @@
 package siwproject.siwproject.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import siwproject.siwproject.client.AmazonClient;
 import siwproject.siwproject.form.AlbumForm;
 import siwproject.siwproject.model.Album;
-import siwproject.siwproject.model.Amministratore;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.model.HashTag;
@@ -48,13 +49,8 @@ public class AlbumController extends HttpServlet {
 
 	@RequestMapping("/aggiungiAlbum")
 	public String aggiungiAlbum(Model model) {
-		// if(amministratore!=null){
-
 		model.addAttribute("form", new AlbumForm());
-		model.addAttribute("fotografi", fotografoService.tutti());
 		return "newAlbum";
-		// }
-		// else return "error";
 	}
 
 	@PostMapping("/album")
@@ -65,15 +61,20 @@ public class AlbumController extends HttpServlet {
 			Album album = new Album(form.getNomeAlbum(), fotografo);
 			List<HashTag> hashTags = hashTagService.parseHashTag(form.getHashTagList());
 			albumService.inserisci(album);
-			for (MultipartFile file : form.getFiles()) {
-				String url = "https://s3.eu-west-3" + amazonClient.uploadFile(file).substring(20);
-				Foto foto = new Foto(url, fotografo, album);
-				hashTagService.linkTags(foto, hashTags);
-				fotoService.inserisci(foto);
+			try {
+				for (MultipartFile file : form.getFiles()) {
+					String url = "https://s3.eu-west-3" + amazonClient.uploadFile(file).substring(20);
+					Foto foto = new Foto(url, fotografo, album);
+					hashTagService.linkTags(foto, hashTags);
+					fotoService.inserisci(foto);
+				}
+			} catch (Exception e) {
+				// Gestione di un bug di causa sconosciuta quando
+				// si prova a caricare un album senza foto
+				e.printStackTrace();
 			}
 
 			return "paginaAdmin";
-
 		}
 		return "newAlbum";
 	}

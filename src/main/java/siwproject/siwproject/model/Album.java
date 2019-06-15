@@ -1,9 +1,7 @@
 package siwproject.siwproject.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.*;
 
@@ -14,7 +12,7 @@ public class Album {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
-	@OneToMany
+	@OneToMany(mappedBy = "album")
 	private List<Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;

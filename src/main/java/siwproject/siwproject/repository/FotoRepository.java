@@ -17,4 +17,5 @@ public interface FotoRepository extends CrudRepository<Foto, Long> {
 
     @Query(value = "SELECT * FROM foto f order by f.creazione DESC limit 30 ", nativeQuery = true)
     List<Foto> last30Foto();
+
 }

@@ -18,16 +18,30 @@
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
             <form th:action="@{/album}" th:object="${form}" method="POST" enctype="multipart/form-data">
-                Fotografo: <select th:field="*{nomeFotografo}">
-                    <option th:each="fotografo : ${fotografi}" th:text="${fotografo.nome}" th:value="${fotografo.nome}"/>
-                </select>
-                    Nome: <input type="text" th:field="*{nomeAlbum}"/><br>
-                    <input type="file" multiple="multiple" th:field="*{files}">
-                    <input type="text" th:field="*{hashTagList}">
-                <input type="submit" value="Inserisci">
+                <table>
+                    <tr>
+                        <td>Fotografo: </td>
+                        <td><input type="text" th:field="*{nomeFotografo}"></td>
+                    </tr>
+                    <tr>
+                        <td>Titolo album: </td>
+                        <td><input type="text" th:field="*{nomeAlbum}" /></td>
+                    </tr>
+                    <tr>
+                        <td>File da caricare: </td>
+                        <td><input type="file" multiple="multiple" th:field="*{files}"></td>
+                    </tr>
+                    <tr>
+                        <td>HashTag per l'album</td>
+                        <td><input type="text" th:field="*{hashTagList}" placeholder="#es1#es2#...#esn"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Inserisci"></td>
+                        <td>Separa gli hashtag con un # come nell'esempio</td>
+                    </tr>
+                </table>
             </form>
         </div>
     </div>
 </body>
-
 </html>

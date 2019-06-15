@@ -1,11 +1,9 @@
 package siwproject.siwproject.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.annotation.Generated;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -21,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import siwproject.siwproject.client.AmazonClient;
 import siwproject.siwproject.form.FotoForm;
-import siwproject.siwproject.form.HashTagForm;
 import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Fotografo;
@@ -56,7 +53,6 @@ public class FotoController {
     @GetMapping("/aggiungiFoto")
     public String aggiungiFoto(Model model) {
         model.addAttribute("form", new FotoForm());
-        model.addAttribute("fotografi", fotografoService.tutti());
         return "newFoto";
     }
 
@@ -75,6 +71,7 @@ public class FotoController {
             }
             return "paginaAdmin";
         } else {
+            model.addAttribute("form", form);
             return "newFoto";
         }
 
@@ -85,6 +82,32 @@ public class FotoController {
         List<Foto> foto = fotoService.ultime30();
         model.addAttribute("fotos", foto);
         return "mostraFoto";
+    }
+
+    @GetMapping("/paginaFoto/{id}")
+    public String paginaFoto(Model model, @PathVariable("id") long id) {
+        Foto foto = fotoService.fotoPerId(id);
+        model.addAttribute("foto", foto);
+        return "paginaFoto";
+    }
+
+    @GetMapping("/cancellaFoto/{id}")
+    public String cancellaFoto(Model model, @PathVariable("id") long id) {
+        fotoService.cancella(id);
+        return "listaFotografo";
+    }
+
+    @GetMapping("/aggiungiAlCarrello/{id}")
+    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @ModelAttribute("id") long id) {
+        Foto foto = fotoService.fotoPerId(id);
+        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
+        if (carrello == null) {
+            carrello = new ArrayList<Foto>();
+        }
+        carrello.add(foto);
+        model.addAttribute("foto", foto);
+        session.setAttribute("carrello", carrello);
+        return "/paginaFoto";
     }
 
     public List<HashTag> parseHashTag(String hashTagString) {
@@ -102,32 +125,10 @@ public class FotoController {
         return hashTags;
     }
 
-    @GetMapping("/paginaFoto/{id}")
-    public String paginaFoto(Model model, @PathVariable("id") long id) {
-        Foto foto = fotoService.fotoPerId(id);
-        model.addAttribute("foto", foto);
-        return "paginaFoto";
-    }
-
     public void linkTags(Foto foto, List<HashTag> HashTags) {
         for (HashTag hashTag : HashTags) {
             hashTag.addFoto(foto);
         }
     }
 
-    @GetMapping("/aggiungiAlCarrello/{id}")
-    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @ModelAttribute("id") long id) {
-
-        Foto foto = fotoService.fotoPerId(id);
-        List<Foto> carrello;
-        if (session.getAttribute("carrello") != null) {
-            carrello = (List<Foto>) session.getAttribute("carrello");
-        } else {
-            carrello = new ArrayList<Foto>();
-        }
-        carrello.add(foto);
-        model.addAttribute("foto", foto);
-        session.setAttribute("carrello", carrello);
-        return "/paginaFoto";
-    }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Fotografo;
+import siwproject.siwproject.repository.AlbumRepository;
 import siwproject.siwproject.repository.FotoRepository;
 import siwproject.siwproject.repository.FotografoRepository;
 
@@ -13,6 +14,10 @@ import siwproject.siwproject.repository.FotografoRepository;
 public class FotografoService {
 	@Autowired
 	private FotografoRepository fotografoRepository;
+	@Autowired
+	private FotoRepository fotoRepository;
+	@Autowired
+	private AlbumRepository albumRepository;
 
 	@Transactional
 	public void inserisci(Fotografo f) {
@@ -40,7 +45,8 @@ public class FotografoService {
 	}
 
 	@Transactional
-	public void cancellaFotografo(Fotografo fotografo) {
+	public void cancella(long id) {
+		Fotografo fotografo = fotografoRepository.findById(id);
 		fotografoRepository.delete(fotografo);
 	}
 
@@ -52,5 +58,16 @@ public class FotografoService {
 	@Transactional
 	public List<Fotografo> fotografiPerNome(String search) {
 		return fotografoRepository.fotografiPerNome(search);
+	}
+
+	@Transactional
+	public String nomePerId(long id) {
+		return fotografoRepository.nomePerId(id);
+	}
+
+	@Transactional
+	public void aggiorna(Fotografo fotografo) {
+		System.out.println(fotografo.getNome());
+		fotografoRepository.aggiorna(fotografo.getId(), fotografo.getNome());
 	}
 }

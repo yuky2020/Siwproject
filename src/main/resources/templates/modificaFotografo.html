@@ -14,15 +14,30 @@
 
 
 </head>
+
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar"/>
-        <div clas="row">
-            <form th:action="@{/modifica}" th:object="${fotografo}" method="GET">
-                Nome: <input type="text" name="newName"><br>
-                <!--- errori -->
-                <input type="submit" value="salva">
-            </form>
-        </div>
+  <div class="container-fluid">
+    <div th:insert="fragments/navbar :: navbar" />
+    <div clas="row">
+      <form th:action="@{/modifica}" th:object="${fotografo}" enctype="multipart/form-data" method="POST">
+        <table>
+          <tr>
+            <td>Nome: </td>
+            <td th:text="${fotografo.nome}"></td>
+            <td>Nuovo nome:</td>
+            <td><input type="text" name="newName"> </td>
+          </tr>
+          <tr>
+            <td>Foto profilo:</td>
+            <td><img th:src="${fotografo.picUrl}" style="width:100px;height:100px;"></td>
+            <td></td>
+            <td><input type="file" name="newPic"></td>
+          </tr>
+          <tr>
+            <td colpsan="2"><input type="submit" value="salva"></td>
+          </tr>
+        </table>
+      </form>
     </div>
+  </div>
 </body>

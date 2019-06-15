@@ -33,7 +33,7 @@
         </div>
         <div th:if="${fotografi}" class="row">
             <div class="col1">
-                <h1> Risultati fotografo per <span th:text="${toSearch}"></span></h1><br>
+                <h1> Risultati fotografo per &# <span th:text="${toSearch}"></span></h1><br>
                 <figure th:each="fotografo : ${fotografi}" itemprop="associatedMedia" itemscope
                     itemtype="http://schema.org.ImageObject">
                     <a th:href="@{'/paginaFotografo' + '/' + ${fotografo.id}}" itemprop="contentUrl"
@@ -41,6 +41,7 @@
                         <img th:src="${fotografo.picUrl}" class="profilepic" itemprop="thumbnail" alt="Image description"
                              />
                     </a>
+                    <span th:text="${fotografo.nome}"></span>
                 </figure>
             </div>
         </div>

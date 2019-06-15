@@ -6,8 +6,12 @@ body {
     text-align: center;
   }
   
+h1{
+  color: orange !important;
+}
+
 .button{
-  border:none;
+  border:white solid 1px;
   color:black !important;
   background: white;
   margin-bottom: 5%;
@@ -17,6 +21,10 @@ body {
   border:lightgreen solid 1px;
   background: lightgreen;
   color:white !important;
+}.red:hover{
+  background:red;
+  color:black !important;
+  border:none;
 }
 
 .box{
@@ -37,6 +45,12 @@ body {
   margin:3px;
 }
 
+.profilepiclist{
+  width: 120px;
+  height:120px;
+  border-radius:200px;
+  margin:3px;
+}
 .costumis{
   background:transparent;
   float:left;
@@ -49,4 +63,3 @@ body {
   height:5%;
   position: relative;
 }
-

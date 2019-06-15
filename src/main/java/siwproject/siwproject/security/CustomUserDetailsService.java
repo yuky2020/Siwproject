@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import siwproject.siwproject.model.Amministratore;
 import siwproject.siwproject.repository.AmministratoreRepository;
-import siwproject.siwproject.security.*;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

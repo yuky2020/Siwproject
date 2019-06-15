@@ -20,17 +20,30 @@
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
             <div class="col1">
-                <ul th:each="fotografo : ${fotografi}">
-                    <span th:text="${fotografo.nome}" />
-                    <a th:href="@{'/cancellaFotografo' + '/' + ${fotografo.id}}">
-                        <div button name="cancella" type="submit" width="30px" height="30px">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLtf96f-I1w22dZoVs14xQSNqjLilnuPK5QmgSCg8gP9Nybrj"
-                               widht="30px" height="30px" border="1" vspace="5" align="middle">
-                        </div>
-                    </a>
-
-                </ul>
+                <table>
+                    <div th:each="fotografo : ${fotografi}">
+                        <tr>
+                            <td th:text="${fotografo.nome}"></td>
+                            <td>&nbsp;&nbsp&nbsp</td>
+                            <td>
+                                <a th:href="@{'/modificaFotografo' + '/' + ${fotografo.id}}">
+                                    <input type="button" class="button" value="Modifica">
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/cancellaFotografo' + '/' + ${fotografo.id}}">
+                                    <input type="button" class="button red" value="Cancella">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"> <img style="border-radius:180px" width="100px" height="100px" th:src="${fotografo.picUrl}"> </td>
+                        </tr>
+                    </div>
+                </table>
             </div>
         </div>
     </div>
 </body>
+
+</html>
