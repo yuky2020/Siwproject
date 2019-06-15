@@ -1,12 +1,14 @@
 package siwproject.siwproject.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,11 +17,14 @@ public class Foto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String url;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	private Fotografo fotografo;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	private Album album;
 	private LocalDateTime creazione;
+	@ManyToMany(mappedBy = "foto")
+	
+	List<HashTag> hashs;
 
 	public Foto() {
 
@@ -76,5 +81,13 @@ public class Foto {
 	public void setCreazione(LocalDateTime creazione) {
 		this.creazione = creazione;
 	}
+	
+	public List<HashTag> getHash(){
+		return this.hashs;
+	}
 
+	public void setHash(List<HashTag> a){
+		this.hashs=a;
+		
+	}
 }

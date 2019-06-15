@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.repository.AlbumRepository;
 import siwproject.siwproject.repository.FotoRepository;
@@ -12,6 +13,8 @@ import siwproject.siwproject.repository.FotografoRepository;
 
 @Service
 public class FotografoService {
+	@Autowired
+	private AlbumService albumService;
 	@Autowired
 	private FotografoRepository fotografoRepository;
 	@Autowired
@@ -45,8 +48,11 @@ public class FotografoService {
 	}
 
 	@Transactional
-	public void cancella(long id) {
+	public void cancellaFotografo(long id) {
 		Fotografo fotografo = fotografoRepository.findById(id);
+		List<Album> albums=fotografo.getAlbum();
+		for(Album dalbum:albums) albumService.cancellaAlbum(dalbum.getId());
+
 		fotografoRepository.delete(fotografo);
 	}
 

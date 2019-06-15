@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import siwproject.siwproject.model.Foto;
+import siwproject.siwproject.model.HashTag;
 import siwproject.siwproject.repository.FotoRepository;
 
 @Service
@@ -40,6 +41,8 @@ public class FotoService {
     @Transactional
     public void cancella(long id) {
         Foto foto = fotoRepository.findById(id);
+        List<HashTag> hashs=foto.getHash();
+        for(HashTag hash:hashs ) hash.removeFoto(foto);
         fotoRepository.delete(foto);
     }
 }

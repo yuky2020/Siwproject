@@ -44,9 +44,9 @@ public class LoginController {
     Role role = new Role();
     role.setRole("OFFICIAL");
     Amministratore user = new Amministratore();
-    user.setUsername("Root");
+    user.setUsername("matteo");
     user.addRole(role);
-    String encryptedPwd = pwdEncoder.encode("official");
+    String encryptedPwd = pwdEncoder.encode("bianchi");
     user.setPassword(encryptedPwd);
     amministratoreRepository.save(user);
 

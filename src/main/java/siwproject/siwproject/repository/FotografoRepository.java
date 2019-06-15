@@ -2,6 +2,7 @@ package siwproject.siwproject.repository;
 
 import java.util.List;
 
+import org.hibernate.type.TrueFalseType;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -30,4 +31,8 @@ public interface FotografoRepository extends CrudRepository<Fotografo, Long> {
     @Modifying
     @Query(value = "update fotografo f set nome = :nome where f.id = :id", nativeQuery = true)
     public void aggiorna(@Param("id") long id, @Param("nome") String nome);
+
+   // @Modifying
+    //@Query(value= "DELETE FROM fotografo f WHERE f.id=id",nativeQuery = true)
+    //public void rimuovi(@Param("id") long id);
 }

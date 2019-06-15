@@ -71,7 +71,7 @@ public class FotografoController extends HttpServlet {
 
 	@GetMapping("cancellaFotografo/{id}")
 	public String modifica(Model model, @ModelAttribute("id") Long id) {
-		fotografoService.cancella(id);
+		fotografoService.cancellaFotografo(id);
 		return "paginaAdmin";
 	}
 

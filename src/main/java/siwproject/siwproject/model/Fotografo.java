@@ -22,9 +22,9 @@ public class Fotografo {
 	@Column(nullable = false)
 	private String nome;
 	private String picUrl;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Foto> foto;
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany()
 	private List<Album> album;
 
 	public Fotografo() {

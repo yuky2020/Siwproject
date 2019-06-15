@@ -57,4 +57,9 @@ public class HashTag {
         this.getFoto().add(foto);
     }
 
+	public void removeFoto(Foto foto) {
+        
+        this.getFoto().remove(foto);
+	}
+
 }
