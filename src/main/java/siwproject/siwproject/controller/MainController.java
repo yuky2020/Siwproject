@@ -40,7 +40,7 @@ public class MainController {
         if (carrello == null) {
             session.setAttribute("carrello", carrello);
         }
-        return "home";
+        return "paginaFoto";
     }
 
     @RequestMapping(value = "/test")
