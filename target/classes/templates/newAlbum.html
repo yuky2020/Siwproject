@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <form th:action="@{/album}" th:object="${form}" method="POST" enctype="multipart/form-data">
+            <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${form}" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>Fotografo: </td>

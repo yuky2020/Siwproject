@@ -21,7 +21,7 @@
 
     <div class="row">
       <ul th:each="album : ${albums}">
-        <li> <a th:href="@{'/paginaAlbum' + '/' + ${album.id}}" th:text="${album.nome}" /><br> </li>
+        <li> <a th:href="@{'/mostraAlbum/paginaAlbum' + '/' + ${album.id}}" th:text="${album.nome}" /><br> </li>
       </ul>
     </div>
   </div>

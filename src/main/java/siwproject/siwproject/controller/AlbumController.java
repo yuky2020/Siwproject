@@ -47,13 +47,13 @@ public class AlbumController extends HttpServlet {
 	@Autowired
 	private HashTagService hashTagService;
 
-	@RequestMapping("/aggiungiAlbum")
+	@RequestMapping("paginaAdmin/aggiungiAlbum")
 	public String aggiungiAlbum(Model model) {
 		model.addAttribute("form", new AlbumForm());
 		return "newAlbum";
 	}
 
-	@PostMapping("/album")
+	@PostMapping("paginaAdmin/aggiungiAlbum/album")
 	private String inserisciAlbum(@Valid @ModelAttribute("form") AlbumForm form, Model model, BindingResult errors) {
 		albumValidator.validate(form, errors);
 		if (!errors.hasErrors()) {
@@ -86,7 +86,7 @@ public class AlbumController extends HttpServlet {
 		return "mostraAlbum";
 	}
 
-	@GetMapping("/paginaAlbum/{id}")
+	@GetMapping("/mostraAlbum/paginaAlbum/{id}")
 	public String wiewAlbum(Model model, @ModelAttribute("id") Long id) {
 		model.addAttribute("album", albumService.albumPerId(id));
 		return "paginaAlbum";
