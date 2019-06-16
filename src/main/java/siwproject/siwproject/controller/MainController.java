@@ -40,7 +40,9 @@ public class MainController {
         if (carrello == null) {
             session.setAttribute("carrello", carrello);
         }
-        return "paginaFoto";
+        List<Foto> foto = fotoService.ultime30();
+        model.addAttribute("fotos", foto);
+        return "mostraFoto";
     }
 
     @RequestMapping(value = "/test")
