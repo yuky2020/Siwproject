@@ -75,15 +75,11 @@ public class FotografoService {
 		return fotografoRepository.nomePerId(id);
 	}
 
-	@Transactional
-	public void aggiorna(Fotografo fotografo,String name) {
-		fotografoRepository.aggiorna(fotografo.getId(),name);
+
+		
+
+
+		
+
 	
-
-		
-
-
-		
-
-	}
 }

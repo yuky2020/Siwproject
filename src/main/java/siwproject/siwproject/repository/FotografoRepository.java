@@ -28,9 +28,9 @@ public interface FotografoRepository extends CrudRepository<Fotografo, Long> {
 
     @Query(value = "SELECT f.nome FROM fotografo f WHERE f.id = :id ", nativeQuery = true)
     public String nomePerId(@Param("id") long id);
-    @Modifying(flushAutomatically = true )
-    @Query(value = "update fotografo  f set f.nome = :nome where f.id = :id",nativeQuery = true)
-    public void aggiorna(@Param("id") long id, @Param("nome") String nome);
+   // @Modifying(flushAutomatically = true )
+    //@Query(value = "update fotografo  f set f.nome = :nome where f.id = :id",nativeQuery = true)
+  //   public void aggiorna(@Param("id") long id, @Param("nome") String nome);
 
    // @Modifying
     //@Query(value= "DELETE FROM fotografo f WHERE f.id=id",nativeQuery = true)

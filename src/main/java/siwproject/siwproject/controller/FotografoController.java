@@ -81,28 +81,8 @@ public class FotografoController extends HttpServlet {
 		return "listaFotografi";
 	}
 
-	@GetMapping("/modificaFotografo/{id}")
-	public String modificaFotografo(Model model, @PathVariable("id") long id) {
-		model.addAttribute("fotografo", fotografoService.fotografoPerId(id));
-		return "modificaFotografo";
-	}
+	
 
-	@PostMapping("/modifica")
-	public String modifica(Model model, @ModelAttribute("fotografo") Fotografo fotografo,
-			@RequestParam("newName") String newName, @RequestPart("newPic") MultipartFile newPic) {
-		if (!newName.equals("")) {
-			fotografoService.aggiorna(fotografo,newName);
-		}
-		try {
-			String newUrl = "https://s3.eu-west-3" + amazonClient.uploadFile(newPic).substring(20);
-			fotografo.setPicUrl(newUrl);
 
-		} catch (Exception e) {
-
-		}
-
-		
-		return "listaFotografi";
-	}
 
 }
