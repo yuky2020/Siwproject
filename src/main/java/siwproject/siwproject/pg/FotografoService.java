@@ -21,10 +21,6 @@ public class FotografoService {
 	private AlbumService albumService;
 	@Autowired
 	private FotografoRepository fotografoRepository;
-	@Autowired
-	private FotoRepository fotoRepository;
-	@Autowired
-	private AlbumRepository albumRepository;
 
 	@Transactional
 	public void inserisci(Fotografo f) {
@@ -54,8 +50,9 @@ public class FotografoService {
 	@Transactional
 	public void cancellaFotografo(long id) {
 		Fotografo fotografo = fotografoRepository.findById(id);
-		List<Album> albums=fotografo.getAlbum();
-		for(Album dalbum:albums) albumService.cancellaAlbum(dalbum.getId());
+		List<Album> albums = fotografo.getAlbum();
+		for (Album dalbum : albums)
+			albumService.cancellaAlbum(dalbum.getId());
 
 		fotografoRepository.delete(fotografo);
 	}
@@ -75,11 +72,9 @@ public class FotografoService {
 		return fotografoRepository.nomePerId(id);
 	}
 
+	@Transactional
+	public boolean existsByNome(String nomeFotografo) {
+		return fotografoRepository.existsByNome(nomeFotografo);
+	}
 
-		
-
-
-		
-
-	
 }

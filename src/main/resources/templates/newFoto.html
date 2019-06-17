@@ -20,11 +20,11 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <form th:action="@{/foto}" th:object="${form}" method="POST" enctype="multipart/form-data">
-                <table>
+            <form th:action="@{/paginaAdmin/aggiungiFoto/foto}" th:object="${fotoForm}" method="POST" enctype="multipart/form-data">
+                <table class="form">
                     <tr>
 
-                        <td>Nome fotografo: </td>
+                        <td>Nome fotografo:  &nbsp;&nbsp;&nbsp;&nbsp; </td>
                         <td> <input type="text" th:field="*{nomeFotografo}"/> </td>
                     </tr>
                     <tr>
@@ -40,6 +40,8 @@
                     <tr>
                         <td>Hashtag:</td>
                         <td><input type="text" th:field="*{hashTagList}"></td>
+                        
+
                     </tr>
                     <tr>
                         <td><input type="submit" value="Inserisci foto"></td>
@@ -48,6 +50,11 @@
                         </td>
                     </tr>
                 </table>
+                <span th:if="${#fields.hasErrors('nomeFotografo')}" th:errors="*{nomeFotografo}"></span><br>
+                <span th:if="${#fields.hasErrors('nomeAlbum')}" th:errors="*{nomeAlbum}"></span><br>
+                <span th:if="${#fields.hasErrors('files')}" th:errors="*{files}"></span><br>
+
+
             </form>
         </div>
     </div>

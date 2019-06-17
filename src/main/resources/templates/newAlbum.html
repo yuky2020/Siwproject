@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${form}" method="POST" enctype="multipart/form-data">
+            <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${albumForm}" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>Fotografo: </td>
@@ -40,6 +40,9 @@
                         <td>Separa gli hashtag con un # come nell'esempio</td>
                     </tr>
                 </table>
+                <span th:if="${#fields.hasErrors('nomeFotografo')}" th:errors="*{nomeFotografo}"></span><br>
+                <span th:if="${#fields.hasErrors('nomeAlbum')}" th:errors="*{nomeAlbum}"></span><br>
+                <span th:if="${#fields.hasErrors('hashTagList')}" th:errors="*{hashTagList}"></span>
             </form>
         </div>
     </div>

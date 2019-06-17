@@ -32,11 +32,13 @@ public class SearchController {
             model.addAttribute("hashTag", hashTagService.hashTagPerNome(toSearch));
         }
         List<Fotografo> fotografi = fotografoService.fotografiPerNome(toSearch);
-
         if (fotografi.size() != 0) {
-            model.addAttribute("fotografi", fotografoService.fotografiPerNome(toSearch));
+            model.addAttribute("fotografi", fotografi);
         }
-        model.addAttribute("album", albumService.albumPerNome(toSearch));
+        List<Album> albums = albumService.albumsPerNome(toSearch);
+        if (albums.size() != 0) {
+            model.addAttribute("albums", albums);
+        }
         return "results";
     }
 }

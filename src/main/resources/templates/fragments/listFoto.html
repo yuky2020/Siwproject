@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<div th:fragment="listFoto">
+    <div class="row section">
+        <figure th:each="f : ${foto}" itemprop="associatedMedia" itemscope itemtype="http://schema.org.ImageObject">
+            <a th:href="@{'/photos/paginaFoto' + '/' + ${f.id}}" itemprop="contentUrl" data-size="1024x1024">
+                <img th:src="${f.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
+            </a>
+        </figure>
+    </div>
+</div>

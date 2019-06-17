@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+
 body {
-    width:100%;
+    width:auto;
+    font-family: 'Merriweather', serif;
   }
   .starter-template {
     padding: 3rem 1.5rem;
@@ -8,6 +11,34 @@ body {
   
 h1{
   color: orange !important;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+h3{
+  color: orange !important
+}
+
+figure{
+  margin:3px;
+}
+
+.row{
+  margin-top:30px;
+}
+
+.nav{
+  margin-top: 0px;
+}
+
+.banana{
+  text-align:center;
+  border-spacing: 0;
+}
+
+.figure{
+  width: 200px !important;
+  margin: 0;
 }
 
 .button{
@@ -38,10 +69,10 @@ h1{
   color: orange !important;
 }
 
-.profilepic{
-  width:20%;
-  height:20%;
-  border-radius:180px;
+img.profilepic{
+  width:150px;
+  height:150px;
+  border-radius:200px;
   margin:3px;
 }
 
@@ -62,4 +93,38 @@ h1{
   width:5%;
   height:5%;
   position: relative;
+}
+
+.section{
+  margin-top:50px;
+  text-align:center;
+}
+
+.titlealbum {
+  margin: 5px;
+  background-repeat: no-repeat;
+  color: orange;
+  background-color: red;
+  font-size: 140%;
+  font-weight: normal;
+  line-height: 260px;
+  background-size: 300px !important;
+  text-align: center;
+  width: 240px !important;
+  height: 150px !important;
+  text-decoration: none;
+}
+
+.form{
+  border-radius: 10px;
+  border: solid orange 1px;
+  margin-left: 10%;
+  
+  background-color: orange;
+  
+}
+
+.figure{
+  width:150px;
+  margin:2px;
 }

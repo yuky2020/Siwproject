@@ -22,9 +22,13 @@ public class FotografoValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        Fotografo fotografo = (Fotografo) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
         if (this.fotografoService.alreadyExists((Fotografo) target)) {
-            errors.reject("duplicato");
+            errors.rejectValue("nome", "esistente");
+        }
+        if (fotografo.getBio().length() > 250) {
+            errors.rejectValue("bio", "long");
         }
     }
 

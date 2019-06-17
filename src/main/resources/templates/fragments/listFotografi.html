@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<div th:fragment="listFotografi">
+    <div class="container-fluid">
+        <div class="figure" th:each="fotografo :  ${fotografi}">
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org.ImageObject">
+                <a th:href="@{'/fotografi/paginaFotografo' + '/' + ${fotografo.id}}" itemprop="contentUrl"
+                    data-size="1024x1024">
+                    <img th:src="${fotografo.picUrl}" class="profilepic" itemprop="thumbnail" alt="Image description" />
+                </a>
+            </figure>
+            <font face="Bedrock">
+                <h3 th:text="${fotografo.nome}"></h3>
+            </font>
+
+        </div>
+    </div>
+</div>

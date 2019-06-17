@@ -1,5 +1,6 @@
 package siwproject.siwproject.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,13 @@ public class Album {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
+	private LocalDateTime creazione;
 	@OneToMany(mappedBy = "album")
 	private List<Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;
+	@OneToOne
+	private Foto last;
 
 	public Album() {
 	}
@@ -24,6 +28,7 @@ public class Album {
 		this.nome = nomeAlbum;
 		this.fotografo = fotografo;
 		this.foto = new ArrayList<Foto>();
+		this.creazione = LocalDateTime.now();
 	}
 
 	public Album(String nome) {
@@ -73,6 +78,22 @@ public class Album {
 
 	public void addFoto(Foto foto) {
 		this.foto.add(foto);
+	}
+
+	public LocalDateTime getCreazione() {
+		return creazione;
+	}
+
+	public void setCreazione(LocalDateTime creazione) {
+		this.creazione = creazione;
+	}
+
+	public Foto getLast() {
+		return last;
+	}
+
+	public void setLast(Foto last) {
+		this.last = last;
 	}
 
 }

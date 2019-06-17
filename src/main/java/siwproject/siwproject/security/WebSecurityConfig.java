@@ -20,8 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().headers().frameOptions().disable().and().authorizeRequests()
-                .antMatchers("/", "/index", "/paginaFotografo/*", "/mostraAlbum", "/mostraFotografi", "/mostraFoto",
-                        "/album/**", "/photographer/**")
+                .antMatchers("/", "/index", "/fotografi/**", "/photos/**", "/albums/**", "/cerca", "/search")
                 .permitAll().antMatchers("/resources/**").permitAll().antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/Amministratore/createTestAmministratore").permitAll().antMatchers("/").permitAll()
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()

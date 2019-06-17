@@ -21,6 +21,7 @@ public class Fotografo {
 	private long id;
 	@Column(nullable = false)
 	private String nome;
+	private String bio;
 	private String picUrl;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Foto> foto;
@@ -33,6 +34,7 @@ public class Fotografo {
 	public Fotografo(String nome) {
 		this.nome = nome;
 		this.foto = new ArrayList<Foto>();
+		this.album = new ArrayList<Album>();
 	}
 
 	/* METODI GETTER E SETTER */
@@ -90,4 +92,13 @@ public class Fotografo {
 	public void addAlbum(Album album) {
 		this.album.add(album);
 	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
 }

@@ -50,51 +50,60 @@ public class FotoController {
         this.amazonClient = amazonClient;
     }
 
-    @GetMapping("/aggiungiFoto")
+    @GetMapping("/paginaAdmin/aggiungiFoto")
     public String aggiungiFoto(Model model) {
-        model.addAttribute("form", new FotoForm());
+        model.addAttribute("fotoForm", new FotoForm());
         return "newFoto";
     }
 
-    @PostMapping("/foto")
-    public String inserisciFoto(@Valid @ModelAttribute("form") FotoForm form, Model model, BindingResult errors) {
+    @PostMapping("/paginaAdmin/aggiungiFoto/foto")
+    public String inserisciFoto(@Valid @ModelAttribute("fotoForm") FotoForm form, Model model, BindingResult errors) {
         fotoValidator.validate(form, errors);
         if (!errors.hasErrors()) {
             Fotografo fotografo = fotografoService.fotografoPerNome(form.getNomeFotografo());
-            Album album = albumService.albumPerNome(form.getNomeAlbum());
+            Album album = albumService.albumPerNomeAndFotografo(form.getNomeAlbum(), fotografo);
             List<HashTag> hashTags = parseHashTag(form.getHashTagList());
             for (MultipartFile file : form.getFiles()) {
                 String url = "https://s3.eu-west-3" + this.amazonClient.uploadFile(file).substring(20);
                 Foto foto = new Foto(url, fotografo, album);
                 linkTags(foto, hashTags);
+                album.setLast(foto);
                 fotoService.inserisci(foto);
             }
             return "paginaAdmin";
         } else {
-            model.addAttribute("form", form);
-            return "newFoto";
+            model.addAttribute("fotoForm", form);
+            return "/newFoto";
         }
 
     }
 
-    @GetMapping("/mostraFoto")
+    @GetMapping("/photos")
     public String viewFoto(Model model) {
         List<Foto> foto = fotoService.ultime30();
         model.addAttribute("fotos", foto);
         return "mostraFoto";
     }
 
-    @GetMapping("/paginaFoto/{id}")
+    @GetMapping("/photos/paginaFoto/{id}")
     public String paginaFoto(Model model, @PathVariable("id") long id) {
         Foto foto = fotoService.fotoPerId(id);
         model.addAttribute("foto", foto);
         return "paginaFoto";
     }
 
-    @GetMapping("/cancellaFoto/{id}")
+    @GetMapping("paginaAdmin/cancellaFoto/{id}")
     public String cancellaFoto(Model model, @PathVariable("id") long id) {
         fotoService.cancella(id);
         return "listaFotografo";
+    }
+
+    @GetMapping("fotografi/fotoFotografo/{id}")
+    public String fotoFotografo(Model model, @PathVariable("id") long id) {
+        Fotografo fotografo = fotografoService.fotografoPerId(id);
+        model.addAttribute("fotografo", fotografo);
+        model.addAttribute("foto", fotografo.getFoto());
+        return "fotoFotografo";
     }
 
     @GetMapping("/aggiungiAlCarrello/{id}")

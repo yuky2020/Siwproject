@@ -16,9 +16,7 @@
     <div th:insert="fragments/navbar :: navbar" />
     <div class="row">
       <div clas="col1">
-        <a class="list" th:each="fotografo: ${fotografi}" th:href="@{'/paginaFotografo' + '/' + ${fotografo.id}}">
-          <img class="profilepiclist" th:src="${fotografo.picUrl}">
-        </a>
+        <div th:insert="fragments/listFotografi :: listFotografi"></div>
       </div>
     </div>
 

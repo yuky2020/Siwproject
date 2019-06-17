@@ -1,6 +1,5 @@
 package siwproject.siwproject.controller;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,12 +47,13 @@ public class AlbumController extends HttpServlet {
 
 	@RequestMapping("paginaAdmin/aggiungiAlbum")
 	public String aggiungiAlbum(Model model) {
-		model.addAttribute("form", new AlbumForm());
+		model.addAttribute("albumForm", new AlbumForm());
 		return "newAlbum";
 	}
 
 	@PostMapping("paginaAdmin/aggiungiAlbum/album")
-	private String inserisciAlbum(@Valid @ModelAttribute("form") AlbumForm form, Model model, BindingResult errors) {
+	private String inserisciAlbum(@Valid @ModelAttribute("albumForm") AlbumForm form, Model model,
+			BindingResult errors) {
 		albumValidator.validate(form, errors);
 		if (!errors.hasErrors()) {
 			Fotografo fotografo = fotografoService.fotografoPerNome(form.getNomeFotografo());
@@ -66,6 +65,7 @@ public class AlbumController extends HttpServlet {
 					String url = "https://s3.eu-west-3" + amazonClient.uploadFile(file).substring(20);
 					Foto foto = new Foto(url, fotografo, album);
 					hashTagService.linkTags(foto, hashTags);
+					album.setLast(foto);
 					fotoService.inserisci(foto);
 				}
 			} catch (Exception e) {
@@ -79,16 +79,18 @@ public class AlbumController extends HttpServlet {
 		return "newAlbum";
 	}
 
-	@GetMapping("/mostraAlbum")
+	@GetMapping("/albums")
 	public String viewAlbums(Model model) {
 		List<Album> albums = albumService.tutti();
 		model.addAttribute("albums", albums);
 		return "mostraAlbum";
 	}
 
-	@GetMapping("/mostraAlbum/paginaAlbum/{id}")
+	@GetMapping("albums/paginaAlbum/{id}")
 	public String wiewAlbum(Model model, @ModelAttribute("id") Long id) {
-		model.addAttribute("album", albumService.albumPerId(id));
+		Album album = albumService.albumPerId(id);
+		model.addAttribute("album", album);
+		model.addAttribute("foto", album.getFoto());
 		return "paginaAlbum";
 	}
 }

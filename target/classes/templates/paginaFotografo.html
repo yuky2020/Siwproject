@@ -8,40 +8,43 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/resources/jscc/photoswipe.css">
-    <link rel="stylesheet" href="/resources/jscc/default-skin/default-skin.css">
-    <link rel="stylesheet" href="/resource/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
     <link rel="stylesheet" href="/resources/css/gallery.css">
-
-    <!-- Core JS file -->
-    <script src="/resources/jscc/photoswipe.min.js"></script>
-
-    <!-- UI JS file -->
-    <script src="/resources/jscc/photoswipe-ui-default.min.js"></script>
-    <title th:text="${fotografo.nome}" />
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <title th:text="${fotografo.nome}"></title>
 </head>
 
 <body>
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
-        <div class="row">
-            <img class="profilepic" th:src="${fotografo.picUrl}" style="width:10%;
-            height:10%;
-            border-radius:300px;">
-             <h1 th:text="${fotografo.nome}" /><br>
-            <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
-                <figure th:each="foto : ${fotografo.foto}" class="anteprimafotografo" itemprop="associatedMedia" itemscope
-                    itemtype="http://schema.org.ImageObject">
-                       <a th:href="@{'/paginaFoto' + '/' + ${foto.id}}" itemprop="contentUrl" data-size="1024x1024"> 
-                        <img th:src="${foto.url}" itemprop="thumbnail" alt="Image description" widht="226"
-                            height="240" />
-                    </a>
-                </figure>
+        <div class="row" style="width:50%;">
+            <table>
+                <tr>
+                    <th rowspan="2"><img style="width:150px;height:150px;border-radius:180px;"
+                            th:src="${fotografo.picUrl}"></th>
+                    <th>
+                        <h1 th:text="${fotografo.nome}"></h1>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <h5 th:text="${fotografo.bio}"></h5>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="container-fluid">
+            <h1>Ultimi inserimenti <a th:href="@{'/fotografi/fotoFotografo' + '/' + ${fotografo.id}}">(mostra tutti)</a>
+            </h1>
+            <div th:insert="fragments/listFoto :: listFoto"> </div>
+            <h1>Album publicati</h1>
+            <div class="row section">
+                <a class="titlealbum" th:each="album : ${fotografo.album}"
+                    th:style="'background:url(' + @{${album.last.url}} + ');'" th:text="${album.nome}"
+                    th:href="@{'/albums/paginaAlbum' + '/' + ${album.id}}" />
             </div>
         </div>
-    </div>
-    
+
 
 </body>
 

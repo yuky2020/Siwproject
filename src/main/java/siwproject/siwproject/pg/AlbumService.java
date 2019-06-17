@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import siwproject.siwproject.model.Album;
 import siwproject.siwproject.model.Foto;
+import siwproject.siwproject.model.Fotografo;
 import siwproject.siwproject.repository.AlbumRepository;
 import siwproject.siwproject.repository.FotoRepository;
 
@@ -35,26 +36,26 @@ public class AlbumService {
     }
 
     @Transactional
-    public Album albumPerNome(String nome) {
-        return this.albumRepository.findByNome(nome);
-    }
-
-    @Transactional
-    public boolean doesExists(String nomeAlbum) {
-        return this.albumRepository.existsByNome(nomeAlbum);
-    }
-
-    @Transactional
     public List<String> nomiAlbum(long fotografoId) {
         return albumRepository.nomiAlbum(fotografoId);
     }
 
+    @Transactional
+    public void cancellaAlbum(long id) {
+        Album album = albumRepository.findById(id);
+        List<Foto> foto = album.getFoto();
+        for (Foto dfoto : foto)
+            fotoService.cancella(dfoto.getId());
+        albumRepository.delete(album);
+    }
 
     @Transactional
-	public void cancellaAlbum(long id) {
-		Album album =albumRepository.findById(id);
-		List<Foto> foto= album.getFoto();
-		for(Foto dfoto:foto) fotoService.cancella(dfoto.getId());
-		albumRepository.delete(album);
-	}
+    public Album albumPerNomeAndFotografo(String nome, Fotografo fotografo) {
+        return albumRepository.findByNomeAndFotografo(nome, fotografo);
+    }
+
+    @Transactional
+    public List<Album> albumsPerNome(String nome) {
+        return albumRepository.albumsPerNome(nome);
+    }
 }

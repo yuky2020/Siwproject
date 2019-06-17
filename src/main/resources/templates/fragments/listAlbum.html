@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<div th:fragment="listAlbum">
+    <a class="titlealbum" th:each="album : ${albums}" th:style="'background:url(' + @{${album.last.url}} + ');'"
+        th:text="${album.nome}" th:href="@{'/albums/paginaAlbum' + '/' + ${album.id}}" />
+</div>
