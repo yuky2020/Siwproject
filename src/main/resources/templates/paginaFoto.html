@@ -27,7 +27,7 @@
                     Album:<span th:text="${foto.album.nome}"></span>
 
 
-                    <a th:href="@{'/aggiungiAlCarrello' + '/' + ${foto.id}}">
+                    <a th:href="@{'/carrello/aggiungiAlCarrello' + '/' + ${foto.id}}">
                         <input class="button" type="button" value="Aggiungi al carrello">
                     </a>
 

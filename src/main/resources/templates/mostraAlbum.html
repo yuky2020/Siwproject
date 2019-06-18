@@ -2,29 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Latest albums
-  </title>
-
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/resources/css/main.css">
   <link rel="stylesheet" href="/resources/css/navbar.css">
-
-
+  <title>Latest albums</title>
 </head>
 
 <body>
-  <div class="container-fluid">
     <div th:insert="fragments/navbar :: navbar"/>
-    <div class="row section">
-        <a class="titlealbum" th:each="album : ${albums}"
-            th:style="'background:url(' + @{${album.last.url}} + ');'" th:text="${album.nome}"
-            th:href="@{'/albums/paginaAlbum' + '/' + ${album.id}}" />
-    </div>
-  </div>
+    <div th:insert="fragments/listAlbum :: listAlbum"></div>
 </body>
 
 </html>

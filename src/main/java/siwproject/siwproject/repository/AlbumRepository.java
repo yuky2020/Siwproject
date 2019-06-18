@@ -25,7 +25,7 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
     @Query(value = "SELECT a.nome FROM album a where a.fotografo_id = :id ORDER BY a.nome ASC", nativeQuery = true)
     public List<String> nomiAlbum(@Param("id") long fotografoId);
 
-    @Query(value = "SELECT * FROM album a WHERE a.nome LIKE CONCAT('%',:search,'%'", nativeQuery = true)
+    @Query(value = "SELECT * FROM album a WHERE LOWER(a.nome) LIKE CONCAT('%',:search,'%')", nativeQuery = true)
     public List<Album> albumsPerNome(@Param("search") String toSearch);
 
 }

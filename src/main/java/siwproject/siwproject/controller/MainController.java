@@ -61,11 +61,4 @@ public class MainController {
         return "search";
     }
 
-    @GetMapping("/mostra")
-    public String mostra(Model model, HttpSession session) {
-        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        model.addAttribute("carrello", carrello);
-        return "mostraCarrello";
-    }
-
 }

@@ -17,19 +17,8 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar" />
-        <div class="row">
-            <div class="my-gallery gallery" itemscope itemtype="http://schema.org/ImageGallery">
-                <figure th:each="f : ${fotos}" class="anteprima" itemprop="associatedMedia" itemscope
-                    itemtype="http://schema.org.ImageObject">
-                    <a th:href="${f.url}" itemprop="contentUrl" data-size="1024x1024">
-                        <img th:src="${f.url}" itemprop="thumbnail" alt="Image description" widht="226" height="240" />
-                    </a>
-                </figure>
-            </div>
-        </div>
-    </div>
+    <div th:insert="fragments/navbar :: navbar" />
+    <div th:insert="fragments/listFoto :: listFoto"></div>
     <div th:insert="fragments/galleryScript :: galleryScript" />
 </body>
 

@@ -12,34 +12,28 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar" />
-        <div class="row">
-            <div class="col1">
-                <form th:action="@{/dettagli}" th:object="${dettagli}" th:method="POST">
-                    <table>
-                        <tr>
-                            <td>Nome:</td>
-                            <td><input type="text" th:field="*{nome}"> </td>
-                        </tr>
-                        <tr>
-                            <td>Cognome:</td>
-                            <td><input type="text" th:field="*{cognome}"></td>
-                        </tr>
-                        <tr>
-                            <td>Numero di telefono:</td>
-                            <td><input type="text" th:field="*{cellulare}"></td>
-                        </tr>
-                        <tr>
-                            <td>Codice prepagata:</td>
-                            <td><input type="text" th:field="*{codicePay}"></td>
-                        </tr>
-                    </table>
-                    <br><input type="submit" value="Invia richiesta">
-                </form>
-            </div>
-        </div>
-    </div>
+    <div th:insert="fragments/navbar :: navbar" />
+    <form th:action="@{/carrello/aggiungiDettagli/dettagli}" th:object="${dettagli}" th:method="POST">
+        <table>
+            <tr>
+                <td>Nome:</td>
+                <td><input type="text" th:field="*{nome}"> </td>
+            </tr>
+            <tr>
+                <td>Cognome:</td>
+                <td><input type="text" th:field="*{cognome}"></td>
+            </tr>
+            <tr>
+                <td>Numero di telefono:</td>
+                <td><input type="text" th:field="*{cellulare}"></td>
+            </tr>
+            <tr>
+                <td>Codice prepagata:</td>
+                <td><input type="text" th:field="*{codicePay}"></td>
+            </tr>
+        </table>
+        <br><input type="submit" value="Invia richiesta">
+    </form>
 </body>
 
 </html>

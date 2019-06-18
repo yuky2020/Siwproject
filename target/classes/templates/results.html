@@ -19,21 +19,21 @@
 <body>
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
-        <div th:if="${fotografi}" class="row">
-
+        <div th:if="${fotografi}" class="row section">
             <h1> Risultati fotografo per <span th:text="${toSearch}"></span></h1><br>
             <div class="container-fluid">
                 <div th:insert="fragments/listFotografi :: listFotografi"></div>
             </div>
         </div>
-        <div th:with="foto=${hashTag.foto}">
+        <div th:if="${hashTag}" th:with="foto=${hashTag.foto}">
             <h1> Risultati foto per #<span th:text="${toSearch}"></span></h1>
             <div th:insert="fragments/listFoto :: listFoto"></div>
         </div>
-    </div>
-    <div th:if="${albums}" class="row">
-        <h1>Risultati album per <span th:text="${toSearch}"></span></h1>
-        <div th:insert="fragments/listAlbum :: listAlbum"></div>
+        
+        <div th:if="${albums}" class="row section">
+            <h1>Risultati album per <span th:text="${toSearch}"></span></h1>
+            <div th:insert="fragments/listAlbum :: listAlbum"></div>
+        </div>
     </div>
 </body>
 

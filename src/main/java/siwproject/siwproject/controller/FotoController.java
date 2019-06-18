@@ -81,7 +81,7 @@ public class FotoController {
     @GetMapping("/photos")
     public String viewFoto(Model model) {
         List<Foto> foto = fotoService.ultime30();
-        model.addAttribute("fotos", foto);
+        model.addAttribute("foto", foto);
         return "mostraFoto";
     }
 
@@ -102,21 +102,7 @@ public class FotoController {
     public String fotoFotografo(Model model, @PathVariable("id") long id) {
         Fotografo fotografo = fotografoService.fotografoPerId(id);
         model.addAttribute("fotografo", fotografo);
-        model.addAttribute("foto", fotografo.getFoto());
         return "fotoFotografo";
-    }
-
-    @GetMapping("/aggiungiAlCarrello/{id}")
-    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @ModelAttribute("id") long id) {
-        Foto foto = fotoService.fotoPerId(id);
-        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        if (carrello == null) {
-            carrello = new ArrayList<Foto>();
-        }
-        carrello.add(foto);
-        model.addAttribute("foto", foto);
-        session.setAttribute("carrello", carrello);
-        return "/paginaFoto";
     }
 
     public List<HashTag> parseHashTag(String hashTagString) {

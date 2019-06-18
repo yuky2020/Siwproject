@@ -19,6 +19,7 @@ import siwproject.siwproject.model.Dettagli;
 import siwproject.siwproject.model.Foto;
 import siwproject.siwproject.model.Richiesta;
 import siwproject.siwproject.pg.DettagliService;
+import siwproject.siwproject.pg.FotoService;
 import siwproject.siwproject.pg.RichiestaService;
 import siwproject.siwproject.validator.DettagliValidator;
 
@@ -30,14 +31,38 @@ public class RichiestaController {
     DettagliService dettagliService;
     @Autowired
     RichiestaService richiestaService;
+    @Autowired
+    FotoService fotoService;
 
-    @GetMapping(value = "/aggiungiDettagli")
+    @GetMapping("carrello/aggiungiAlCarrello/{id}")
+    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @PathVariable("id") long id) {
+        Foto foto = fotoService.fotoPerId(id);
+        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
+        if (carrello == null) {
+            carrello = new ArrayList<Foto>();
+        }
+        carrello.add(foto);
+        model.addAttribute("foto", foto);
+        session.setAttribute("carrello", carrello);
+        return "/paginaFoto";
+    }
+
+    @GetMapping("carrello")
+    public String mostra(Model model, HttpSession session) {
+        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
+        if (carrello.size() != 0) {
+            model.addAttribute("carrello", carrello);
+        }
+        return "mostraCarrello";
+    }
+
+    @GetMapping("carrello/aggiungiDettagli")
     public String creaDettagli(Model model) {
         model.addAttribute("dettagli", new Dettagli());
         return "newDettagli";
     }
 
-    @PostMapping("/dettagli")
+    @PostMapping("carrello/aggiungiDettagli/dettagli")
     public String setDettagli(HttpSession session, Model model, @Valid @ModelAttribute("dettagli") Dettagli dettagli,
             BindingResult errors) {
         dettagliValidator.validate(dettagli, errors);
@@ -49,25 +74,32 @@ public class RichiestaController {
             List<Richiesta> richieste = richiestaService.tutte();
             model.addAttribute("richieste", richieste);
             session.setAttribute("carrello", new ArrayList<Foto>());
-            return "/";
+            return "mostraFoto";
         } else {
             return "newDettagli";
         }
     }
 
-    @GetMapping("/paginaRichiesta/{id}")
+    @GetMapping("/carrello/rimuovi/{id}")
+    public String rimuoviDalCarrello(Model model, @PathVariable("id") long id, HttpSession session) {
+        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
+        session.setAttribute("carrello", carrello.remove(fotoService.fotoPerId(id)));
+        return "mostraCarrello";
+    }
+
+    @GetMapping("paginaAdmin/paginaRichiesta/{id}")
     public String paginaRichiesta(Model model, @PathVariable("id") long id) {
         model.addAttribute("richiesta", richiestaService.richiestaPerId(id));
         return "paginaRichiesta";
     }
 
-    @GetMapping("/listaRichieste")
+    @GetMapping("paginaAdmin/listaRichieste")
     public String mostraRichieste(Model model) {
         model.addAttribute("richieste", richiestaService.tutte());
         return "listaRichieste";
     }
 
-    @GetMapping("/deleteRichiesta/{id}")
+    @GetMapping("paginaAdmin/deleteRichiesta/{id}")
     public String rimuoviRichiesta(Model model, @PathVariable("id") long id) {
         richiestaService.elimina(id);
         model.addAttribute("richieste", richiestaService.tutte());
