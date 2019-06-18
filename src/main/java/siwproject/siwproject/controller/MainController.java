@@ -36,18 +36,9 @@ public class MainController {
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
-        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        if (carrello == null) {
-            session.setAttribute("carrello", carrello);
-        }
         List<Foto> foto = fotoService.ultime30();
         model.addAttribute("fotos", foto);
         return "mostraFoto";
-    }
-
-    @RequestMapping(value = "/test")
-    public String test(Model model) {
-        return "test";
     }
 
     @GetMapping("/paginaAdmin")

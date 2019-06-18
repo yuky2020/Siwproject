@@ -25,19 +25,8 @@ public class LoginController {
 
   @GetMapping("/login")
   public String paginaLogin(Model model) {
-
     return "login";
   }
-
-  /*
-   * @GetMapping("/loginValidator") String acessoAdmin(@Valid @RequestParam String
-   * username, @RequestParam("pwd") String pwd, Model model) {
-   * 
-   * Amministratore a =
-   * amministratoreServices.loadUserByUsername(username.trim()); if (a != null &&
-   * a.checkPwd(pwd.trim())) { model.addAttribute("amministratore", a); return
-   * "paginaAdmin"; } else return "login"; }
-   */
 
   @GetMapping("/Amministratore/createTestAmministratore")
   public String createTestUser() {

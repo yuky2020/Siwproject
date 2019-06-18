@@ -20,7 +20,7 @@
 
   <div th:insert="fragments/navbar :: navbar"></div>
   <div class="container-fluid" th:if="${carrello}">
-    <h1>Foto selezionate</h1>
+    <h1>Foto selezionate <a th:href="@{/carrello/svuotaCarrello}">(svuota carrello)</a></h1>
     <div class="row">
       <table th:each="foto:${carrello}">
         <tr>

@@ -23,8 +23,7 @@ public class Foto {
 	private Album album;
 	private LocalDateTime creazione;
 	@ManyToMany(mappedBy = "foto")
-	
-	List<HashTag> hashs;
+	List<HashTag> hashTags;
 
 	public Foto() {
 
@@ -81,13 +80,19 @@ public class Foto {
 	public void setCreazione(LocalDateTime creazione) {
 		this.creazione = creazione;
 	}
-	
-	public List<HashTag> getHash(){
-		return this.hashs;
+
+	public List<HashTag> getHashTags() {
+		return hashTags;
 	}
 
-	public void setHash(List<HashTag> a){
-		this.hashs=a;
-		
+	public void setHashTags(List<HashTag> hashTags) {
+		this.hashTags = hashTags;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Foto that = (Foto) obj;
+		return this.id == that.id;
+	}
+
 }

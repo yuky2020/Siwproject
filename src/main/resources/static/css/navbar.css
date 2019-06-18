@@ -51,13 +51,9 @@ background-color: white;
 margin: 2px;
 }
 
-
-
 .containerbox{
 width: 30%;
 }
-
-
 
 .col-box{
 width:40%;
@@ -70,11 +66,4 @@ margin-left:5%;
 width:100%;
 }
 
-.disableditem{
-    color:black !important;
-}
-
-.disableditem:hover{
-    color:black;
-}
 

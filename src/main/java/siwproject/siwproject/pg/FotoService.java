@@ -49,7 +49,7 @@ public class FotoService {
     @Transactional
     public void cancella(long id) {
         Foto foto = fotoRepository.findById(id);
-        List<HashTag> hashs = foto.getHash();
+        List<HashTag> hashs = foto.getHashTags();
         for (HashTag hash : hashs)
             hash.removeFoto(foto);
         fotoRepository.delete(foto);

@@ -3,6 +3,7 @@ package siwproject.siwproject.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -35,22 +36,22 @@ public class RichiestaController {
     FotoService fotoService;
 
     @GetMapping("carrello/aggiungiAlCarrello/{id}")
-    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @PathVariable("id") long id) {
+    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @PathVariable("id") long id,
+            HttpServletRequest req) {
         Foto foto = fotoService.fotoPerId(id);
         List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
         if (carrello == null) {
             carrello = new ArrayList<Foto>();
         }
         carrello.add(foto);
-        model.addAttribute("foto", foto);
         session.setAttribute("carrello", carrello);
-        return "/paginaFoto";
+        return "redirect:" + req.getHeader("Referer");
     }
 
     @GetMapping("carrello")
     public String mostra(Model model, HttpSession session) {
         List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        if (carrello.size() != 0) {
+        if (carrello != null && carrello.size() != 0) {
             model.addAttribute("carrello", carrello);
         }
         return "mostraCarrello";
@@ -83,7 +84,14 @@ public class RichiestaController {
     @GetMapping("/carrello/rimuovi/{id}")
     public String rimuoviDalCarrello(Model model, @PathVariable("id") long id, HttpSession session) {
         List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        session.setAttribute("carrello", carrello.remove(fotoService.fotoPerId(id)));
+        System.out.println(carrello.remove(fotoService.fotoPerId(id)));
+        session.setAttribute("carrello", carrello);
+        return "mostraCarrello";
+    }
+
+    @GetMapping("/carrello/svuotaCarrello")
+    public String svuotaCarrello(Model model, HttpSession session) {
+        session.setAttribute("carrello", new ArrayList<Foto>());
         return "mostraCarrello";
     }
 
