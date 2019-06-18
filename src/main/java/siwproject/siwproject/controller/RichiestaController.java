@@ -36,16 +36,19 @@ public class RichiestaController {
     FotoService fotoService;
 
     @GetMapping("carrello/aggiungiAlCarrello/{id}")
-    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @PathVariable("id") long id,
+    public String aggiungiFotoAlCarrello(Model model, HttpSession session, @PathVariable("id") Long id,
             HttpServletRequest req) {
-        Foto foto = fotoService.fotoPerId(id);
-        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        if (carrello == null) {
-            carrello = new ArrayList<Foto>();
+        if (id != null) {
+            Foto foto = fotoService.fotoPerId(id);
+            List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
+            if (carrello == null) {
+                carrello = new ArrayList<Foto>();
+            }
+            carrello.add(foto);
+            session.setAttribute("carrello", carrello);
+            return "redirect:" + req.getHeader("Referer");
         }
-        carrello.add(foto);
-        session.setAttribute("carrello", carrello);
-        return "redirect:" + req.getHeader("Referer");
+        return "error";
     }
 
     @GetMapping("carrello")
@@ -82,11 +85,14 @@ public class RichiestaController {
     }
 
     @GetMapping("/carrello/rimuovi/{id}")
-    public String rimuoviDalCarrello(Model model, @PathVariable("id") long id, HttpSession session) {
-        List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
-        System.out.println(carrello.remove(fotoService.fotoPerId(id)));
-        session.setAttribute("carrello", carrello);
-        return "mostraCarrello";
+    public String rimuoviDalCarrello(Model model, @PathVariable("id") Long id, HttpSession session) {
+        if (id != null) {
+            List<Foto> carrello = (List<Foto>) session.getAttribute("carrello");
+            System.out.println(carrello.remove(fotoService.fotoPerId(id)));
+            session.setAttribute("carrello", carrello);
+            return "mostraCarrello";
+        }
+        return "error";
     }
 
     @GetMapping("/carrello/svuotaCarrello")
@@ -96,9 +102,12 @@ public class RichiestaController {
     }
 
     @GetMapping("paginaAdmin/paginaRichiesta/{id}")
-    public String paginaRichiesta(Model model, @PathVariable("id") long id) {
-        model.addAttribute("richiesta", richiestaService.richiestaPerId(id));
-        return "paginaRichiesta";
+    public String paginaRichiesta(Model model, @PathVariable("id") Long id) {
+        if (id != null) {
+            model.addAttribute("richiesta", richiestaService.richiestaPerId(id));
+            return "paginaRichiesta";
+        }
+        return "error";
     }
 
     @GetMapping("paginaAdmin/listaRichieste")
@@ -108,10 +117,13 @@ public class RichiestaController {
     }
 
     @GetMapping("paginaAdmin/deleteRichiesta/{id}")
-    public String rimuoviRichiesta(Model model, @PathVariable("id") long id) {
-        richiestaService.elimina(id);
-        model.addAttribute("richieste", richiestaService.tutte());
-        return "listaRichieste";
+    public String rimuoviRichiesta(Model model, @PathVariable("id") Long id) {
+        if (id != null) {
+            richiestaService.elimina(id);
+            model.addAttribute("richieste", richiestaService.tutte());
+            return "listaRichieste";
+        }
+        return "error";
     }
 
 }

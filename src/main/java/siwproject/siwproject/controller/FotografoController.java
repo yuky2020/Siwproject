@@ -70,15 +70,21 @@ public class FotografoController extends HttpServlet {
 
 	@GetMapping("fotografi/paginaFotografo/{id}")
 	public String getPaginaFotografo(Model model, @PathVariable("id") Long id) {
-		model.addAttribute("fotografo", fotografoService.fotografoPerId(id));
-		model.addAttribute("foto", fotoService.lastNByIdFotografo(id, 3));
-		return "paginaFotografo";
+		if (id != null) {
+			model.addAttribute("fotografo", fotografoService.fotografoPerId(id));
+			model.addAttribute("foto", fotoService.lastNByIdFotografo(id, 3));
+			return "paginaFotografo";
+		}
+		return "error";
 	}
 
 	@GetMapping("paginaAdmin/cancellaFotografo/{id}")
 	public String modifica(Model model, @ModelAttribute("id") Long id) {
-		fotografoService.cancellaFotografo(id);
-		return "/paginaAdmin";
+		if (id != null) {
+			fotografoService.cancellaFotografo(id);
+			return "/paginaAdmin";
+		}
+		return "error";
 	}
 
 	@GetMapping("paginaAdmin/listaFotografi")

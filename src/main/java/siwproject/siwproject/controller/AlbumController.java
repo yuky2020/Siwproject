@@ -88,9 +88,13 @@ public class AlbumController extends HttpServlet {
 
 	@GetMapping("albums/paginaAlbum/{id}")
 	public String wiewAlbum(Model model, @ModelAttribute("id") Long id) {
-		Album album = albumService.albumPerId(id);
-		model.addAttribute("album", album);
-		model.addAttribute("foto", album.getFoto());
-		return "paginaAlbum";
+		if (id != null) {
+			Album album = albumService.albumPerId(id);
+			model.addAttribute("album", album);
+			model.addAttribute("foto", album.getFoto());
+			return "paginaAlbum";
+		} else {
+			return "error";
+		}
 	}
 }

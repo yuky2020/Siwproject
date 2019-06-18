@@ -86,23 +86,32 @@ public class FotoController {
     }
 
     @GetMapping("/photos/paginaFoto/{id}")
-    public String paginaFoto(Model model, @PathVariable("id") long id) {
-        Foto foto = fotoService.fotoPerId(id);
-        model.addAttribute("foto", foto);
-        return "paginaFoto";
+    public String paginaFoto(Model model, @PathVariable("id") Long id) {
+        if (id != null) {
+            Foto foto = fotoService.fotoPerId(id);
+            model.addAttribute("foto", foto);
+            return "paginaFoto";
+        }
+        return "error";
     }
 
     @GetMapping("paginaAdmin/cancellaFoto/{id}")
-    public String cancellaFoto(Model model, @PathVariable("id") long id) {
-        fotoService.cancella(id);
-        return "listaFotografo";
+    public String cancellaFoto(Model model, @PathVariable("id") Long id) {
+        if (id != null) {
+            fotoService.cancella(id);
+            return "listaFotografo";
+        }
+        return "error";
     }
 
     @GetMapping("fotografi/fotoFotografo/{id}")
-    public String fotoFotografo(Model model, @PathVariable("id") long id) {
-        Fotografo fotografo = fotografoService.fotografoPerId(id);
-        model.addAttribute("fotografo", fotografo);
-        return "fotoFotografo";
+    public String fotoFotografo(Model model, @PathVariable("id") Long id) {
+        if (id != null) {
+            Fotografo fotografo = fotografoService.fotografoPerId(id);
+            model.addAttribute("fotografo", fotografo);
+            return "fotoFotografo";
+        }
+        return "error";
     }
 
     public List<HashTag> parseHashTag(String hashTagString) {
