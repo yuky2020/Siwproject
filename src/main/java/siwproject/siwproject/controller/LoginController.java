@@ -31,11 +31,11 @@ public class LoginController {
   @GetMapping("/Amministratore/createTestAmministratore")
   public String createTestUser() {
     Role role = new Role();
-    role.setRole("OFFICIAL");
+    role.setRole("PROF");
     Amministratore user = new Amministratore();
-    user.setUsername("matteo");
+    user.setUsername("paolo");
     user.addRole(role);
-    String encryptedPwd = pwdEncoder.encode("bianchi");
+    String encryptedPwd = pwdEncoder.encode("merialdo");
     user.setPassword(encryptedPwd);
     amministratoreRepository.save(user);
 
