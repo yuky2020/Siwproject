@@ -14,33 +14,33 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar"/>
-        <div class="row containerbox">
+    <div th:insert="fragments/navbar :: navbar" />
+    <div class="row containerbox"></div>
+    <h1> Console amministratore </h1>
+    <div class="container-fluid box">
 
-            <div class="container-fluid box">
-
-                <div class="row-box">
-                    <input class="button" type="button" value="Aggiungi fotografo"
-                        onclick="location.href='paginaAdmin/aggiungiFotografo'">
-                </div>
-                <div class="row-box">
-                    <input class="button" type="button" value="Aggiungi album" onclick="location.href='/paginaAdmin/aggiungiAlbum'">
-                </div>
-                <div class="row-box">
-                    <input class="button" type="button" value="Aggiungi foto" onclick="location.href='/paginaAdmin/aggiungiFoto'">
-                </div>
-                <div class="row-box">
-                    <input class="button" type="button" value="Lista fotografi" onclick="location.href='/paginaAdmin/listaFotografi'">
-                </div>
-                <div class="row-box">
-                    <input class="button" type="button" value="Richieste pendenti" onclick="location.href='/paginaAdmin/listaRichieste'">
-                </div>
-            </div>
-            <div>
-            </div>
+        <div class="row-box">
+            <input class="button" type="button" value="Aggiungi fotografo"
+                onclick="location.href='paginaAdmin/aggiungiFotografo'">
+        </div>
+        <div class="row-box">
+            <input class="button" type="button" value="Aggiungi album"
+                onclick="location.href='/paginaAdmin/aggiungiAlbum'">
+        </div>
+        <div class="row-box">
+            <input class="button" type="button" value="Aggiungi foto"
+                onclick="location.href='/paginaAdmin/aggiungiFoto'">
+        </div>
+        <div class="row-box">
+            <input class="button" type="button" value="Lista fotografi"
+                onclick="location.href='/paginaAdmin/listaFotografi'">
+        </div>
+        <div class="row-box">
+            <input class="button" type="button" value="Richieste pendenti"
+                onclick="location.href='/paginaAdmin/listaRichieste'">
         </div>
     </div>
+
 </body>
 
 </html>

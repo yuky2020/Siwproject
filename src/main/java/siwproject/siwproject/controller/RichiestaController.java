@@ -75,7 +75,7 @@ public class RichiestaController {
             List<Richiesta> richieste = richiestaService.tutte();
             model.addAttribute("richieste", richieste);
             session.setAttribute("carrello", new ArrayList<Foto>());
-            return "mostraFoto";
+            return "greetings";
         } else {
             return "newDettagli";
         }
@@ -113,4 +113,5 @@ public class RichiestaController {
         model.addAttribute("richieste", richiestaService.tutte());
         return "listaRichieste";
     }
+
 }

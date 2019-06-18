@@ -3,6 +3,7 @@ package siwproject.siwproject.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class HashTag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(unique = true)
     private String nome;
     @ManyToMany
     @JoinTable(name = "hashTag_foto", joinColumns = @JoinColumn(name = "hashTag_id"), inverseJoinColumns = @JoinColumn(name = "foto_id"))
@@ -57,9 +59,9 @@ public class HashTag {
         this.getFoto().add(foto);
     }
 
-	public void removeFoto(Foto foto) {
-        
+    public void removeFoto(Foto foto) {
+
         this.getFoto().remove(foto);
-	}
+    }
 
 }

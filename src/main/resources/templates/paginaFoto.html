@@ -15,25 +15,19 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar"></div>
-        <div class="row">
-            <div class="col1">
-                <div width="65%">
-                    <img th:src="${foto.url}" /><br>
-                </div>
-                <div width="25%">
-                    Autore:<span th:text="${foto.fotografo.nome}"></span>
-                    Album:<span th:text="${foto.album.nome}"></span>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <div width="65%">
+        <img th:src="${foto.url}" /><br>
+    </div>
+    <div width="25%">
+        Autore:<span th:text="${foto.fotografo.nome}"></span>
+        Album:<span th:text="${foto.album.nome}"></span>
 
 
-                    <a th:href="@{'/carrello/aggiungiAlCarrello' + '/' + ${foto.id}}">
-                        <input class="button" type="button" value="Aggiungi al carrello">
-                    </a>
+        <a th:href="@{'/carrello/aggiungiAlCarrello' + '/' + ${foto.id}}">
+            <input class="button" type="button" value="Aggiungi al carrello">
+        </a>
 
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 

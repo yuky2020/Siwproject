@@ -16,33 +16,29 @@
 
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar" />
-        <div class="col1">
-            <form th:action="@{/paginaAdmin/aggiungiFotografo/fotografo}" method="POST" th:object="${fotografo}" enctype="multipart/form-data">
-                <table>
-                    <tr>
-                        <td>Nome: </td>
-                        <td><input type="text" th:field="*{nome}"></td>
-                    </tr>
-                    <tr>
-                        <td>Biografia(max 140 caratteri): </td>
-                        <td><input type="text" th:field="*{bio}"></td>
-                    </tr>
-                    <tr>
-                        <td>Foto profilo: </td>
-                        <td><input type="file" name="pic"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Conferma inserimento"></td>
-                    </tr>
-                </table>
-                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br>
+    <div th:insert="fragments/navbar :: navbar" />
+    <form th:action="@{/paginaAdmin/aggiungiFotografo/fotografo}" method="POST" th:object="${fotografo}"
+        enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>Nome: </td>
+                <td><input type="text" th:field="*{nome}"></td>
+            </tr>
+            <tr>
+                <td>Biografia(max 140 caratteri): </td>
+                <td><input type="text" th:field="*{bio}"></td>
+            </tr>
+            <tr>
+                <td>Foto profilo: </td>
+                <td><input type="file" name="pic"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Conferma inserimento"></td>
+            </tr>
+        </table>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br>
                 <span th:if="${#fields.hasErrors('bio')}" th:errors="*{bio}"></span>
-                
             </form>
-        </div>
-    </div>
 </body>
 
 </html>

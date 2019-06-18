@@ -14,31 +14,27 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar"></div>
-        <div class="row">
-            <form action="search" method="GET">
-                <table>
-                    <tr>
-                        <td>Testo ricerca: </td>
-                        <td><input type="text" name="toSearch"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <h6>*Il testo inserito verrà ricercato nei nomi dei fotografi,<br>degli album e negli
-                                hashtag delle foto</h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" value="cerca">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <span th:text="${errore}"></span>
-        </div>
-    </div>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <form action="search" method="GET">
+        <table>
+            <tr>
+                <td>Testo ricerca: </td>
+                <td><input type="text" name="toSearch"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h6>*Il testo inserito verrà ricercato nei nomi dei fotografi,<br>degli album e negli
+                        hashtag delle foto</h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="cerca">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <span th:text="${errore}"></span>
 </body>
 
 </html>

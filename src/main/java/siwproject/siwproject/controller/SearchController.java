@@ -26,19 +26,22 @@ public class SearchController {
 
     @GetMapping("/search")
     public String search(Model model, @RequestParam("toSearch") String toSearch) {
-        if (toSearch.length() > 3) {
+        if (toSearch.length() >= 3) {
             model.addAttribute("toSearch", toSearch);
             toSearch = toSearch.toLowerCase();
             if (hashTagService.existsByNome(toSearch)) {
                 model.addAttribute("hashTag", hashTagService.hashTagPerNome(toSearch));
+                model.addAttribute("results", true);
             }
             List<Fotografo> fotografi = fotografoService.fotografiPerNome(toSearch);
             if (fotografi.size() != 0) {
                 model.addAttribute("fotografi", fotografi);
+                model.addAttribute("results", true);
             }
             List<Album> albums = albumService.albumsPerNome(toSearch);
             if (albums.size() != 0) {
                 model.addAttribute("albums", albums);
+                model.addAttribute("results", true);
             }
             return "results";
         } else {

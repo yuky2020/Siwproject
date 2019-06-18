@@ -20,7 +20,7 @@ h3{
 }
 
 figure{
-  margin:3px;
+  margin:8px;
 }
 
 .banana{
@@ -47,9 +47,11 @@ figure{
 
 .box{
   margin-top:5%;
-  border: solid lightgreen 1px;
+  border: solid lightgreen 3px;
   position: center;
   text-align: center;
+  width:30% !important;
+
   }
 
 .navback{
@@ -76,16 +78,10 @@ img.profilepic{
   width:5%;
 }
 
-.section{
-  margin-top:50px;
-  text-align:center;
-}
-
 .titlealbum {
   margin: 5px;
   background-repeat: no-repeat;
   color: orange;
-  background-color: red;
   font-size: 140%;
   font-weight: normal;
   line-height: 260px;
@@ -94,4 +90,9 @@ img.profilepic{
   width: 240px !important;
   height: 150px !important;
   text-decoration: none;
+}
+
+.figure{
+  padding-left: 10px;
+  padding-right: 10px;
 }
