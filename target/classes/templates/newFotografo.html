@@ -9,7 +9,13 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
-
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/navbar.css">
+    <link rel="stylesheet" href="/resources/css/form.css">
+    
 
 
 </head>
@@ -17,28 +23,42 @@
 
 <body>
     <div th:insert="fragments/navbar :: navbar" />
+
+    <div class="col-md-6 ">
+    <div class="col-lg-12 col-sm-12 my-auto">
     <form th:action="@{/paginaAdmin/aggiungiFotografo/fotografo}" method="POST" th:object="${fotografo}"
         enctype="multipart/form-data">
         <table>
             <tr>
+                <div class="form-group">
                 <td>Nome: </td>
                 <td><input type="text" th:field="*{nome}"></td>
+                </div>
             </tr>
+
             <tr>
+                <div class="form-group">
                 <td>Biografia(max 140 caratteri): </td>
                 <td><input type="text" th:field="*{bio}"></td>
+                </div>
             </tr>
             <tr>
+                <div class="form-group">
                 <td>Foto profilo: </td>
                 <td><input type="file" name="pic"></td>
+                </div>
             </tr>
             <tr>
+                <div class="form-group">
                 <td colspan="2"><input type="submit" value="Conferma inserimento"></td>
+                </div>
             </tr>
         </table>
         <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br>
                 <span th:if="${#fields.hasErrors('bio')}" th:errors="*{bio}"></span>
             </form>
+    </div>
+    </div>        
 </body>
 
 </html>
