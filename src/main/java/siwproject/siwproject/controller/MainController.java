@@ -38,7 +38,7 @@ public class MainController {
     public String index(Model model, HttpSession session) {
         List<Foto> foto = fotoService.ultime30();
         model.addAttribute("fotos", foto);
-        return "mostraFoto";
+        return "home";
     }
 
     @GetMapping("/paginaAdmin")
