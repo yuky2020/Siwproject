@@ -52,4 +52,9 @@ public class MainController {
         return "search";
     }
 
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
+
 }

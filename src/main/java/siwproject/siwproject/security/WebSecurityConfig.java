@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().headers().frameOptions().disable().and().authorizeRequests()
                 .antMatchers("/", "/index", "/fotografi/**", "/photos/**", "/albums/**", "/cerca", "/search",
-                        "/carrello/**")
+                        "/carrello/**", "/error/**")
                 .permitAll().antMatchers("/resources/**").permitAll().antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/Amministratore/createTestAmministratore").permitAll().antMatchers("/").permitAll()
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()

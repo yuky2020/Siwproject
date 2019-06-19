@@ -5,52 +5,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/resource/css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+        integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
-    integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" 
-    crossorigin="anonymous">
     <link rel="stylesheet" href="/resources/css/form.css">
 
     <title> Nuovo album </title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div th:insert="fragments/navbar :: navbar" />
-        <div class="row">
-            <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${albumForm}" method="POST" enctype="multipart/form-data" class="pure-form">
-                <table>
-                    <tr>
-                        <td>Fotografo: </td>
-                        <td><input type="text" th:field="*{nomeFotografo}"></td>
-                    </tr>
-                    <tr>
-                        <td>Titolo album: </td>
-                        <td><input type="text" th:field="*{nomeAlbum}" /></td>
-                    </tr>
-                    <tr>
-                        <td>File da caricare: </td>
-                        <td><input type="file" multiple="multiple" th:field="*{files}"></td>
-                    </tr>
-                    <tr>
-                        <td>HashTag per l'album</td>
-                        <td><input type="text" th:field="*{hashTagList}" placeholder="#es1#es2#...#esn"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Inserisci"></td>
-                        <td>Separa gli hashtag con un # come nell'esempio</td>
-                    </tr>
-                </table>
-                <span th:if="${#fields.hasErrors('nomeFotografo')}" th:errors="*{nomeFotografo}"></span><br>
-                <span th:if="${#fields.hasErrors('nomeAlbum')}" th:errors="*{nomeAlbum}"></span><br>
-                <span th:if="${#fields.hasErrors('hashTagList')}" th:errors="*{hashTagList}"></span>
-            </form>
-        </div>
-    </div>
+    <div th:insert="fragments/navbar :: navbar" />
+    <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${albumForm}" method="POST"
+        enctype="multipart/form-data" class="pure-form">
+        <table>
+            <tr>
+                <td>Fotografo: </td>
+                <td><input type="text" th:field="*{nomeFotografo}"></td>
+            </tr>
+            <tr>
+                <td>Titolo album: </td>
+                <td><input type="text" th:field="*{nomeAlbum}" /></td>
+            </tr>
+            <tr>
+                <td>File da caricare: </td>
+                <td><input type="file" multiple="multiple" th:field="*{files}"></td>
+            </tr>
+            <tr>
+                <td>HashTag per l'album</td>
+                <td><input type="text" th:field="*{hashTagList}" placeholder="#es1#es2#...#esn"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Inserisci"></td>
+                <td>Separa gli hashtag con un # come nell'esempio</td>
+            </tr>
+        </table>
+        <span th:if="${#fields.hasErrors('nomeFotografo')}" th:errors="*{nomeFotografo}"></span><br>
+        <span th:if="${#fields.hasErrors('nomeAlbum')}" th:errors="*{nomeAlbum}"></span><br>
+        <span th:if="${#fields.hasErrors('hashTagList')}" th:errors="*{hashTagList}"></span>
+    </form>
 </body>
 </html>
