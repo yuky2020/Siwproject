@@ -8,12 +8,17 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/resource/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+    integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/form.css">
+
     <title>Dettagli richiesta</title>
 </head>
 
 <body>
     <div th:insert="fragments/navbar :: navbar" />
-    <form th:action="@{/carrello/aggiungiDettagli/dettagli}" th:object="${dettagli}" th:method="POST">
+    <form th:action="@{/carrello/aggiungiDettagli/dettagli}" th:object="${dettagli}" th:method="POST" class="pure-form">
         <table>
             <tr>
                 <td>Nome:</td>

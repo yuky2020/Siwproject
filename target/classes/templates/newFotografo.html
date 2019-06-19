@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
     <link rel="stylesheet" href="/resources/css/form.css">
-    
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+    integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" 
+    crossorigin="anonymous">
 
 
 </head>
@@ -27,7 +30,7 @@
     <div class="col-md-6 ">
     <div class="col-lg-12 col-sm-12 my-auto">
     <form th:action="@{/paginaAdmin/aggiungiFotografo/fotografo}" method="POST" th:object="${fotografo}"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data"  class="pure-form">
         <table>
             <tr>
                 <div class="form-group">

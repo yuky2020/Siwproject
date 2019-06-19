@@ -10,6 +10,12 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/resource/css/main.css">
     <link rel="stylesheet" href="/resources/css/navbar.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+    integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/form.css">
+
     <title> Nuovo album </title>
 </head>
 
@@ -17,7 +23,7 @@
     <div class="container-fluid">
         <div th:insert="fragments/navbar :: navbar" />
         <div class="row">
-            <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${albumForm}" method="POST" enctype="multipart/form-data">
+            <form th:action="@{/paginaAdmin/aggiungiAlbum/album}" th:object="${albumForm}" method="POST" enctype="multipart/form-data" class="pure-form">
                 <table>
                     <tr>
                         <td>Fotografo: </td>
